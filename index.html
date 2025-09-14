@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Mind Mirror - ค้นพบภาพสะท้อนในมุมที่คนอื่นเห็น</title>
+    <title>🔮 Deep Psychology Test - 12 Archetypes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
@@ -13,788 +13,1129 @@
             --safe-area-inset-right: env(safe-area-inset-right, 20px);
             --safe-area-inset-bottom: env(safe-area-inset-bottom, 20px);
             --safe-area-inset-left: env(safe-area-inset-left, 20px);
-            --color-gold: #D4AF37;
-            --color-gold-light: #FFD700;
-            --color-dark-bg: #0D0D0D;
-            --color-card-bg: rgba(20, 20, 20, 0.7);
-            --color-text: #EAEAEA;
-            --color-text-muted: rgba(234, 234, 234, 0.8);
-            --color-border: rgba(212, 175, 55, 0.2);
         }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
+        * {
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background-color: var(--color-dark-bg);
-            color: var(--color-text);
-            line-height: 1.7;
-            overflow-x: hidden;
-            background: radial-gradient(circle at 50% 50%, #1a1a1a, var(--color-dark-bg) 70%);
+            box-sizing: border-box;
         }
         
-        .mysterious-particle-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f0f0f 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.6;
         }
-
-        .mysterious-particle {
-            position: absolute; background-color: rgba(212, 175, 55, 0.1); border-radius: 50%;
-            animation: float 20s infinite ease-in-out; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        
+        .bg-mystery {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
         }
-
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.1; }
-            50% { transform: translateY(-50px) translateX(20px) scale(1.2); opacity: 0.2; }
-            100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.1; }
+        
+        .mystery-particle {
+            position: absolute;
+            background: radial-gradient(circle, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: mysteryFloat 12s ease-in-out infinite;
+            will-change: transform, opacity;
         }
-
+        
+        @keyframes mysteryFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-50px) rotate(180deg); opacity: 0.5; }
+        }
+        
         .container {
-            max-width: 700px; margin: 0 auto;
-            padding: calc(var(--safe-area-inset-top) + 2rem) var(--safe-area-inset-right) calc(var(--safe-area-inset-bottom) + 2rem) var(--safe-area-inset-left);
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: var(--safe-area-inset-top);
+            padding-bottom: var(--safe-area-inset-bottom);
+        }
+        
+        .header {
+            text-align: center;
+            padding-top: 30px;
+            margin-bottom: 30px;
+            animation: darkReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+        
+        @keyframes darkReveal {
+            from { opacity: 0; transform: translateY(-30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .header h1 {
+            font-size: clamp(2.2rem, 9vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffd93d, #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(255,107,107,0.4);
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
         
         .main-card {
-            background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: 20px;
-            padding: clamp(1.5rem, 5vw, 2.5rem); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); position: relative; overflow: hidden; transition: all 0.3s ease;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            animation: cardEmerge 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+            position: relative;
+            overflow: hidden;
+            will-change: transform, opacity;
         }
-
+        
         .main-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-            animation: animate-border 4s linear infinite;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffd93d, #6c5ce7, #ff6b6b);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease-in-out infinite;
         }
         
-        @keyframes animate-border { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-
-        .hidden { display: none !important; }
+        .start-section { text-align: center; }
+        .start-icon { font-size: 3.5rem; margin-bottom: 16px; animation: pulseGlow 3s infinite; }
         
-        h1, h2, h3, h4 { text-wrap: balance; }
-
-        /* --- Sections --- */
-        #intro-section, #quiz-section, #results-section { animation: fadeIn 0.8s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Intro Section */
-        #intro-section { text-align: center; }
-        #intro-section h4 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--color-text);
-            margin-bottom: 0.5rem;
-        }
-        #intro-section h1 {
-            font-size: clamp(2.2rem, 7vw, 3.5rem); font-weight: 700; margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--color-gold-light), var(--color-gold));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        #intro-section h2 {
-            font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 300; color: var(--color-text-muted);
-            margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto;
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,107,107,0.4)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(78,205,196,0.6)); }
         }
         
-        /* Buttons */
-        .btn {
-            font-family: 'Kanit', sans-serif; border: none; border-radius: 50px; padding: 1rem 2.5rem;
-            font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease;
-            text-decoration: none; display: inline-block;
-        }
-        .btn-primary-pro {
-            background: linear-gradient(45deg, var(--color-gold), var(--color-gold-light));
-            color: #111; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-        .btn-primary-pro:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); }
-        .btn-secondary { background-color: rgba(255, 255, 255, 0.1); color: var(--color-text); }
-        .btn-secondary:hover { background-color: rgba(255, 255, 255, 0.2); }
-
-        /* Quiz Section */
-        .progress-bar-container { margin-bottom: 1.5rem; }
-        .progress-bar { width: 100%; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; }
-        #progress-bar-fill {
-            height: 10px; width: 0%; background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
-            border-radius: 10px; transition: width 0.4s ease-out;
-        }
-        #progress-text { text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: var(--color-text-muted); }
-
-        #question-text { font-size: clamp(1.2rem, 4vw, 1.5rem); font-weight: 500; margin-bottom: 2rem; text-align: center; }
-        .answers-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-        .answer-option {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--color-border); border-radius: 12px;
-            padding: 1rem; cursor: pointer; transition: all 0.2s ease; text-align: left; color: var(--color-text);
-            font-family: 'Kanit', sans-serif; font-size: 1rem; width: 100%;
-        }
-        .answer-option:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--color-gold); }
-        .answer-option.selected {
-            background: rgba(212, 175, 55, 0.2); border-color: var(--color-gold);
-            transform: scale(1.03); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-        }
-        .quiz-navigation { display: flex; justify-content: space-between; margin-top: 2rem; }
-        #nextBtn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        /* Results Section */
-        .archetype-card {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--color-border); border-radius: 15px;
-            padding: 1.5rem; margin-bottom: 1.5rem; /* Reduced margin */
-        }
-        .archetype-card.top-archetype { border-width: 2px; border-color: var(--color-gold); }
-        .archetype-title { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-        .archetype-icon { font-size: 2rem; }
-        .archetype-name { font-size: 1.5rem; font-weight: 600; }
-        .archetype-desc { color: var(--color-text-muted); margin-bottom: 1rem; }
-        .archetype-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-        .chip { background: rgba(212, 175, 55, 0.1); color: var(--color-gold); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; }
-        .trigger-text { font-style: italic; font-size: 0.9rem; color: rgba(234, 234, 234, 0.6); }
-
-        .section-headline { font-size: 1.3rem; font-weight: 600; text-align: center; margin: 2.5rem 0 1.5rem; }
-        
-        .accordion-item {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--color-border); border-radius: 12px; margin-bottom: 1rem;
-        }
-        .accordion-header {
-            width: 100%; background: none; border: none; color: var(--color-text); font-family: 'Kanit', sans-serif;
-            font-size: 1.1rem; font-weight: 500; padding: 1rem 1.5rem; text-align: left;
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-        }
-        .accordion-header::after { content: '+'; font-size: 1.5rem; transition: transform 0.3s ease; }
-        .accordion-item.active .accordion-header::after { transform: rotate(45deg); }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .accordion-content-inner { padding: 0 1.5rem 1.5rem; }
-        .accordion-content-inner ul { list-style: none; padding-left: 0; }
-        .accordion-content-inner li { margin-bottom: 0.5rem; display: flex; align-items: flex-start; }
-        .accordion-content-inner li::before { content: '›'; color: var(--color-gold); margin-right: 0.75rem; font-weight: 700; }
-        .accordion-content-inner li p {
-            margin: 0;
-            line-height: 1.6;
-        }
-        .accordion-content-inner li p + p {
-            margin-top: 0.75rem;
+        .start-text {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+            color: #ffd93d;
+            line-height: 1.3;
         }
         
-        #chart-container { padding: 1rem; }
+        .start-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+            color: #e0e0e0;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
         
-        .cta-section {
-            background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 15px; padding: 2rem; text-align: center; margin-top: 2rem;
-        }
-        .cta-section h3 {
-            font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--color-gold-light), var(--color-gold));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .cta-section ul { list-style: none; padding: 0; margin: 1.5rem 0 0.5rem; display: inline-block; text-align: left; }
-        .cta-section li { margin-bottom: 0.5rem; }
+        .intensity-levels { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+        .intensity-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; transition: all 0.3s ease; cursor: pointer; text-align: left; will-change: transform, box-shadow; }
+        .intensity-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+        .intensity-card.selected { border-color: #ff6b6b; background: rgba(255,107,107,0.1); box-shadow: 0 0 20px rgba(255,107,107,0.2); transform: scale(1.02); }
+        .intensity-header { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+        .intensity-icon { font-size: 1.5rem; }
+        .intensity-title { font-size: 1.2rem; font-weight: 600; color: #ffd93d; }
+        .intensity-desc { font-size: 0.9rem; opacity: 0.8; line-height: 1.5; }
         
-        #retakeBtn { margin-top: 1.5rem; text-align: center; }
+        .btn { min-height: 48px; padding: 12px 24px; border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; font-family: 'Kanit', sans-serif; position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 1.5px; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-appearance: none; will-change: transform, box-shadow; }
+        .btn-danger { background: linear-gradient(45deg, #ff6b6b, #ee5a52); color: white; box-shadow: 0 8px 20px rgba(255,107,107,0.3); }
+        .btn:active { transform: translateY(2px); box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none !important; transform: none !important; }
+        
+        .quiz-section { display: none; }
+        .progress-container { background: rgba(0,0,0,0.6); border-radius: 15px; height: 10px; margin-bottom: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .progress-bar { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 15px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; will-change: width; }
+        .progress-text { text-align: center; margin-bottom: 16px; font-size: 0.9rem; opacity: 0.8; }
+        
+        .question-card { background: rgba(0,0,0,0.4); border-radius: 20px; padding: 24px; margin-bottom: 24px; animation: questionDarkSlide 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform, opacity; }
+        @keyframes questionDarkSlide { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes questionDarkFadeOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-50px); } }
+        .question-category { font-size: 0.8rem; opacity: 0.7; margin-bottom: 10px; color: #4ecdc4; text-transform: uppercase; }
+        .question-number { font-size: 0.9rem; opacity: 0.8; margin-bottom: 16px; color: #ffd93d; }
+        .question-text { font-size: 1.1rem; font-weight: 500; margin-bottom: 24px; line-height: 1.5; }
+        
+        .answers-grid { display: flex; flex-direction: column; gap: 12px; }
+        .answer-option { background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 18px; min-height: 48px; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; position: relative; color: #e0e0e0; will-change: transform, box-shadow, border-color; line-height: 1.4; }
+        .answer-option:hover { background: rgba(255,255,255,0.08); border-color: #4ecdc4; }
+        .answer-option.selected { background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(78,205,196,0.2)); border-color: #ff6b6b; transform: scale(1.03); color: #ffffff; }
+        
+        .quiz-navigation { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 24px; }
+        .quiz-navigation .btn { font-size: 0.9rem; padding: 10px 20px; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-secondary { background: linear-gradient(45deg, #6c757d, #495057); color: white; box-shadow: 0 8px 20px rgba(108,117,125,0.3); }
+        
+        .results-section { display: none; animation: resultsReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        @keyframes resultsReveal { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        .final-cta-btn {
-            padding-left: 3rem;
-            padding-right: 3rem;
-            margin-top: 1rem;
+        .results-header { text-align: center; margin-bottom: 24px; }
+        .results-header h2 { font-size: 1.5rem; color: #ffd93d; margin-bottom: 10px; line-height: 1.3; }
+        
+        .archetype-card { background: rgba(0,0,0,0.7); border: 2px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 24px; text-align: center; margin-bottom: 24px; position: relative; }
+        .archetype-card.primary { border-color: #ff6b6b; box-shadow: 0 0 30px rgba(255,107,107,0.3); }
+        .archetype-card.secondary { border-color: #4ecdc4; background: rgba(0,0,0,0.5); }
+        .archetype-card.tertiary { border-color: #6c5ce7; background: rgba(0,0,0,0.5); }
+        
+        .archetype-rank { font-size: 1.2rem; font-weight: 600; color: #ffd93d; margin-bottom: 5px; }
+        .archetype-rank-desc { font-size: 0.9rem; font-weight: 300; color: rgba(255, 255, 255, 0.8); margin-bottom: 20px; }
+        .archetype-icon { font-size: 3.5rem; margin-bottom: 15px; animation: iconFloat 4s ease-in-out infinite; }
+        @keyframes iconFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        
+        .archetype-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.3; }
+        .secondary .archetype-title, .tertiary .archetype-title { font-size: 1.4rem; }
+        .archetype-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; line-height: 1.4; }
+        .archetype-description { font-size: 1rem; text-align: left; max-width: 400px; margin: 0 auto; line-height: 1.6; }
+
+        .chart-container { margin-top: 40px; padding: 20px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; }
+        
+        .restart-section, .disclaimer { border-radius: 20px; padding: 24px; text-align: center; }
+        .restart-section { background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); margin-top: 40px;}
+        .restart-section h3 { font-size: 1.3rem; color: #ffd93d; margin-bottom: 16px; line-height: 1.4; }
+        
+        .disclaimer { 
+            background: rgba(255,193,7,0.1); 
+            border: 1px solid rgba(255,193,7,0.3); 
+            font-size: 0.9rem;
+            margin-top: 40px;
+            /* แก้ไข: เพิ่ม margin-bottom เพื่อสร้างพื้นที่ให้ credit footer */
+            margin-bottom: 60px;
+        }
+        .disclaimer-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 15px; color: #ffd93d; }
+        
+        .credit-footer {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            bottom: calc(15px + var(--safe-area-inset-bottom));
+            right: calc(20px + var(--safe-area-inset-right));
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: 'Kanit', sans-serif;
+            font-weight: 300;
+            z-index: 100;
+            pointer-events: none;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
 
-        @media (min-width: 600px) {
-            .answers-grid { grid-template-columns: repeat(2, 1fr); }
+        /* --- Tablet Styles (768px and up) --- */
+        @media (min-width: 768px) {
+            body { font-size: 17px; }
+            .container { padding: 40px; }
+            .main-card { padding: 40px; border-radius: 30px;}
+            .header h1 { font-size: 3rem; }
+            .intensity-levels { grid-template-columns: 1fr 1fr; display: grid;}
+            .question-text { font-size: 1.3rem; }
+            .answer-option { padding: 25px; font-size: 1.1rem; }
+            .results-header h2 { font-size: 2rem; }
+            .restart-section h3 { font-size: 1.5rem; }
+            .archetype-title { font-size: 2.2rem; }
+            .secondary .archetype-title, .tertiary .archetype-title { font-size: 1.8rem; }
+            .archetype-description { font-size: 1.05rem; max-width: 100%;}
+            .quiz-navigation .btn { font-size: 1rem; padding: 12px 24px; }
+        }
+
+        /* --- Desktop Styles (1024px and up) --- */
+        @media (min-width: 1024px) {
+            .header h1 { font-size: 3.2rem; }
+            .main-card { padding: 50px; }
+            .intensity-levels { grid-template-columns: 1fr 1fr 1fr; }
+            .btn { padding: 18px 45px; font-size: 1.1rem; }
+            .quiz-navigation .btn { font-size: 1rem; padding: 12px 24px; }
+            .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: flex-start; }
+            .primary-archetype-wrapper { grid-column: 1 / -1; }
+            .secondary-archetype-wrapper, .tertiary-archetype-wrapper { margin-top: 0; }
         }
 
     </style>
 </head>
 <body>
-    <div class="mysterious-particle-bg" id="bgMystery"></div>
+    <div class="bg-mystery" id="bgMystery"></div>
+    
     <div class="container">
-        <div class="main-card">
-            <!-- Section 1: Introduction -->
-            <section id="intro-section">
-                <h4>MindMirror</h4>
-                <h1>ภาพที่คุณฉาย…<br>
-                    กับภาพที่ใคร ๆ เห็น<br> 
-                    ตรงกันจริงหรือ?</h1>
-                <h2>Mind Mirror เครื่องมือสะท้อนภาพจำ<br>ที่คนมีต่อคุณ พร้อมทางรับมือทันที</h2>
-                <button id="startTestBtn" class="btn btn-primary-pro">ใช้งานเครื่องมือ</button>
-            </section>
-            
-            <!-- Section 2: Quiz -->
-            <section id="quiz-section" class="hidden">
-                <div class="progress-bar-container">
-                    <div id="progress-text"></div>
-                    <div class="progress-bar">
-                        <div id="progress-bar-fill"></div>
-                    </div>
-                </div>
-                <h3 id="question-text"></h3>
-                <div class="answers-grid" id="answers-container"></div>
-                <div class="quiz-navigation">
-                    <button id="prevBtn" class="btn btn-secondary">ย้อนกลับ</button>
-                    <button id="nextBtn" class="btn btn-primary-pro" disabled>ต่อไป</button>
-                </div>
-            </section>
-
-            <!-- Section 3: Results (NEW STRUCTURE) -->
-            <section id="results-section" class="hidden">
-                <!-- Part 1: Top Archetype Details -->
-                <div class="section-headline">ภาพสะท้อนหลักของคุณ</div>
-                <div id="top-archetype-full-container">
-                    <!-- JS will inject card and accordions here -->
-                </div>
-
-                <!-- Part 2: Runner-up Archetype Details -->
-                <div class="section-headline">ภาพสะท้อนรอง</div>
-                <div id="runner-up-archetype-full-container">
-                    <!-- JS will inject card and accordions here -->
-                </div>
-
-                <!-- Part 3: Summary & Next Steps -->
-                <div class="section-headline">สรุปดัชนีการตระหนักรู้</div>
-                <div id="chart-container">
-                    <canvas id="awarenessChart"></canvas>
-                </div>
-
-                <div class="cta-section">
-                    <h3>สิ่งที่คุณเห็นใน Mind Mirror คือแค่เงาสะท้อนแรก</h3>
-                    <p>ถ้าอยากรู้จักตัวเองลึกจริง → ลอง Deep Psychology Test Pro</p>
-                    <p style="margin-top: 1rem;">เจาะลึก 8 มิติชีวิต พร้อมคู่มือที่ใช้ได้จริง</p>
-                    <ul>
-                        <li>🧬 DNA บุคลิกภาพ</li>
-                        <li>⭐ จุดแข็ง & ⚠️ จุดอ่อน</li>
-                        <li>💼 งานที่เหมาะกับคุณ</li>
-                        <li>💕 ความรักและความสัมพันธ์</li>
-                        <li>🚀 แผนพัฒนาตัวเองเจาะจง</li>
-                        <li>💎 ข้อความลับเฉพาะคุณ</li>
-                    </ul>
-                    <a href="https://ddtpro.framer.website/" target="_blank" class="btn btn-primary-pro final-cta-btn">🔮 คลิกดูรายละเอียดเลย</a>
+        <header class="header">
+            <h1>🔮 Deep&nbsp;Psychology<br>Test</h1>
+        </header>
+        
+        <main class="main-card">
+            <!-- Start Section -->
+            <section class="start-section" id="startSection">
+                <div class="start-icon">🔮</div>
+                <div class="start-text">พร้อมที่จะเผชิญหน้ากับ<br>ความจริงของตัวเองหรือไม่?</div>
+                <div class="start-description">
+                    <!-- 1. แก้ไขข้อความตามคำสั่ง -->
+                    แบบทดสอบนี้จะพาคุณดำดิ่งสู่จิตใต้สำนึก<br>
+                    เพื่อค้นพบ 3 สันดานเเท้จริง ที่ถูกฝังลึกอยู่
+                    <br><br>
+                    เลือกระดับความลึกที่ต้องการสำรวจ (25&nbsp;คำถาม)
                 </div>
                 
-                <div id="retakeBtn">
-                    <button class="btn btn-secondary">ทำแบบทดสอบอีกครั้ง</button>
+                <div class="intensity-levels">
+                    <div class="intensity-card" data-level="normal">
+                        <div class="intensity-header">
+                            <span class="intensity-icon">🌙</span>
+                            <div class="intensity-title">Normal</div>
+                        </div>
+                        <div class="intensity-desc">คำถามพื้นฐาน เหมาะสำหรับคนที่อยากรู้จักตัวเองในระดับทั่วไป</div>
+                    </div>
+                    <div class="intensity-card" data-level="deep">
+                        <div class="intensity-header">
+                            <span class="intensity-icon">🔥</span>
+                            <div class="intensity-title">Deep</div>
+                        </div>
+                        <div class="intensity-desc">เจาะลึกไปถึงจิตใต้สำนึก เหมาะกับคนที่พร้อมเผชิญความจริงของตัวเอง</div>
+                    </div>
+                    <div class="intensity-card" data-level="extreme">
+                        <div class="intensity-header">
+                             <span class="intensity-icon">⚡</span>
+                            <div class="intensity-title">Extreme</div>
+                        </div>
+                        <div class="intensity-desc">สำหรับคนที่พร้อมเผชิญด้านมืดของตัวเอง</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-danger" id="startTestBtn" disabled>🚀 เริ่มการเจาะลึก</button>
+            </section>
+            
+            <!-- Quiz Section -->
+            <section class="quiz-section" id="quizSection">
+                <div class="progress-text" id="progressText"></div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div id="questionContainer">
+                    <!-- Question will be injected here -->
+                </div>
+                
+                <nav class="quiz-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" disabled>← ย้อนกลับ</button>
+                    <button class="btn btn-danger" id="nextBtn" disabled>ลึกต่อไป →</button>
+                </nav>
+            </section>
+            
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection">
+                <div class="results-header">
+                    <h2>ผลการวิเคราะห์ Archetype</h2>
+                    <p>นี่คือต้นแบบ 3&nbsp;อันดับแรกที่ประกอบกันเป็นตัวตนของคุณ</p>
+                </div>
+                <div id="resultsContainer">
+                    <!-- Top 3 Archetype cards will be populated here -->
                 </div>
 
+                <div class="chart-container">
+                     <div class="results-header">
+                        <h2>ภาพรวมพลังงาน Archetype</h2>
+                        <p>นี่คือ "รูปทรงทางจิตวิทยา" ที่แสดงพลังงานของทั้ง 12&nbsp;Archetypes ในตัวคุณ</p>
+                    </div>
+                    <div style="position: relative; margin: auto; max-width: 500px;">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="restart-section">
+                    <h3>🔄 ต้องการเจาะลึก<br>ในระดับอื่นไหม?</h3>
+                    <button class="btn btn-danger" id="retakeBtn">🔮 ทดสอบใหม่</button>
+                </div>
             </section>
-        </div>
-    </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // --- DATA ---
-        const archetypes = {
-            WG: {
-                name: "Warmth Gap",
-                tagline: "ดูเย็นชา/ห่างเหิน",
-                icon: "❄️",
-                desc: "คุณเก่งด้านเหตุผลและเนื้อหา แต่โทนการสื่อสารอาจทำให้คนรู้สึกว่าคุณไม่เป็นมิตร ทั้งที่จริงคุณใส่ใจมาก เพียงแต่ไม่ถนัดการแสดงออก",
-                chips: ["#นิ่งจริงจัง", "#ไม่ค่อยแสดงอารมณ์", "#ดูเหมือนไม่แคร์"],
-                trigger: "มักโผล่เมื่อคุณโฟกัสงานหรือเหนื่อยล้า",
-                why: "<p><strong>Warmth–Competence Model</strong></p><p>ที่อธิบายว่าเวลาคนประเมินใคร เขาจะดูว่า “อบอุ่นไหม” ก่อนจะดูว่า “เก่งไหม” คุณที่โฟกัสเนื้อหาเลยถูกมองว่าไม่ใส่ใจ ทั้งที่จริงคุณแค่ไม่ถนัดแสดงออก</p>",
-                audit: [
-                    "ใช่ครับ/ค่ะ ผมอาจดูนิ่งไปหน่อย … แต่จริง ๆ แล้วผมใส่ใจคุณมาก เพียงแค่ไม่ค่อยพูด",
-                    "จริงครับ/ค่ะ บางทีผมโฟกัสที่งานจนลืมแสดงอารมณ์ … ผมจะพยายามปรับให้มากขึ้น",
-                    "ใช่เลย ผมไม่ค่อยพูดหวาน ๆ … แต่ผมอยากให้คุณรู้ว่าผมแสดงออกผ่านการกระทำ"
-                ],
-                playbook: [
-                    "สบตากับคู่สนทนา 2–3 วิก่อนพูด",
-                    "พยักหน้าหรือยิ้มเล็กน้อยเวลาฟัง",
-                    "ส่งข้อความสั้น ๆ หลังเจอกัน (“ถึงบ้านปลอดภัยนะ”)",
-                    "ใช้คำพูดง่าย ๆ ที่สื่อความเข้าใจ เช่น “ฉันเข้าใจนะที่คุณรู้สึกแบบนี้”",
-                    "เพิ่มท่าทางกาย เช่น ก้มศีรษะเล็กน้อยแทนการนิ่งเฉย"
-                ]
-            },
-            BB: {
-                name: "Boundary Blur",
-                tagline: "ไม่เคารพเวลา/ขอบเขต",
-                icon: "⏳",
-                desc: "คุณเป็นคนให้ใจ แต่บางครั้งเลยก้าวล้ำ เช่น ทักหาคนตอนดึก หรือคาดหวังคำตอบเร็ว ทั้งที่อีกฝ่ายอาจไม่สะดวก",
-                chips: ["#ไม่ให้พื้นที่", "#ทักไม่ดูเวลา", "#ไม่เกรงใจ"],
-                trigger: "มักโผล่เมื่อคุณกังวลหรือใจร้อนอยากเคลียร์ทันที",
-                why: "<p><strong>Boundary Theory</strong></p><p>ที่อธิบายว่าทุกคนมีเส้นแบ่ง “เวลาส่วนตัว” กับ “เวลาสังคม/งาน” ที่ต่างกัน เมื่อคุณใจร้อนทักหานอกเวลา จึงถูกมองว่ารุกล้ำพื้นที่ส่วนตัว</p>",
-                audit: [
-                    "จริงครับ/ค่ะ ผมอาจทักตอนที่คุณไม่สะดวก … ต่อไปผมจะถามก่อนว่าคุยได้ไหม",
-                    "ใช่ครับ/ค่ะ ผมบางทีใจร้อน อยากคุยทันที … แต่ผมรู้แล้วว่าทุกคนต้องมีเวลาของตัวเอง",
-                    "ถูกต้องเลย ผมอาจไม่ทันคิด … ครั้งหน้าขอเราตั้งเวลาที่เหมาะสมร่วมกัน"
-                ],
-                playbook: [
-                    "ระบุเวลาทำงาน/พักให้ชัด เช่น “สะดวกคุย 10.00–20.00”",
-                    "ก่อนทักถามว่า “ตอนนี้สะดวกคุยไหมครับ/คะ?”",
-                    "งดส่งข้อความเกิน 3 ทุ่ม",
-                    "ถ้าอีกฝ่ายไม่ตอบทันที อย่าทวงซ้ำ",
-                    "ฝึกเว้นช่วงเวลาในการตอบบ้าง ไม่ต้องรีบเสมอไป"
-                ]
-            },
-            CR: {
-                name: "Consistency Risk",
-                tagline: "ไม่นิ่ง/เปลี่ยนใจง่าย",
-                icon: "🌪️",
-                desc: "คุณชอบลองสิ่งใหม่ ไม่กลัวเปลี่ยนเส้นทาง และยืดหยุ่นกับสถานการณ์ แต่บางครั้งคนอื่นอาจรู้สึกว่าคุณไม่น่าเชื่อถือ เพราะเปลี่ยนความคิดหรือการตัดสินใจบ่อยเกินไป",
-                chips: ["#เอาแน่ไม่ได้", "#พูดไม่เหมือนเดิม", "#เปลี่ยนตลอด"],
-                trigger: "มักโผล่เมื่อเจอข้อมูลใหม่หรือสถานการณ์ไม่คาดคิด",
-                why: "<p><strong>Consistency Principle</strong></p><p>ที่อธิบายว่าคนเรามักให้ค่ากับความ “คงเส้นคงวา” มากกว่าความเปลี่ยนแปลง แม้ความยืดหยุ่นของคุณจะมีเหตุผล แต่ก็อาจถูกมองว่าไม่น่าเชื่อถือ</p>",
-                audit: [
-                    "จริงครับ/ค่ะ ผมเปลี่ยนบ่อยเพราะกำลังหาทางที่ดีที่สุด … ไม่ใช่ว่าไม่มีเหตุผล",
-                    "ใช่ครับ/ค่ะ ผมยังทดลองอยู่ … แต่ทุกการเปลี่ยนมีการบันทึกและเหตุผลชัดเจน",
-                    "ถูกเลย ผมอาจดูไม่นิ่ง … แต่ผมคิดว่าความยืดหยุ่นช่วยให้หาทางออกใหม่ ๆ ได้เสมอ"
-                ],
-                playbook: [
-                    "เขียนบันทึกเหตุผลของแต่ละการตัดสินใจ",
-                    "เมื่อเปลี่ยน ให้บอกสั้น ๆ ว่า “ผมเปลี่ยนเพราะ…”",
-                    "ใช้คำว่า “กำลังลอง” แทนการบอกว่า “ตัดสินใจแล้ว”",
-                    "ตั้งกรอบเวลาให้ตัวเอง เช่น “จะตัดสินใจภายใน 2 สัปดาห์”",
-                    "แจ้งคนรอบตัวว่าตอนนี้คุณอยู่ใน “ช่วงทดลอง”"
-                ]
-            },
-            CD: {
-                name: "Clarity Deficit",
-                tagline: "พูดไม่ชัด/วกวน",
-                icon: "💬",
-                desc: "คุณรู้เยอะและมีข้อมูลมาก แต่เวลาอธิบายอาจเล่ายืดยาวจนคนฟังหลงทาง ทำให้ความเก่งของคุณไม่ถูกสื่อออกไปเต็มที่",
-                chips: ["#วกวน", "#สรุปไม่เป็น", "#จับใจความยาก"],
-                trigger: "มักโผล่เมื่อคุณพยายามอธิบายเรื่องที่ซับซ้อน",
-                why: "<p><strong>Processing Fluency</strong></p><p>ที่อธิบายว่า “สิ่งที่เข้าใจง่าย = น่าเชื่อถือกว่า” เมื่อคุณอธิบายซับซ้อนเกินไป คนฟังจะใช้พลังงานเยอะและอาจสรุปว่าสิ่งที่คุณพูดไม่น่าเชื่อถือ</p>",
-                audit: [
-                    "จริงครับ/ค่ะ ผมบางทีพูดรายละเอียดเยอะเกิน … ขออนุญาตสรุปสั้น ๆ",
-                    "ใช่ครับ/ค่ะ ผมอาจเล่าไม่เป็นระเบียบ … งั้นผมเรียงใหม่เป็นข้อ ๆ ให้เลยนะ",
-                    "ถูกครับ/ค่ะ ผมอาจไม่ชัดเจน … ต่อไปจะเริ่มจากสรุปก่อน"
-                ],
-                playbook: [
-                    "ใช้กฎ “พูด 3 ข้อหลัก”",
-                    "เวลาพิมพ์ ให้สรุปใจความ 2–3 ประโยคท้าย",
-                    "ฝึกเล่าเรื่องให้เด็กฟัง เพื่อปรับให้ง่ายขึ้น",
-                    "พูดให้สั้นลงกว่าที่คิด 30%",
-                    "เริ่มต้นด้วย “ประเด็นหลักมี 2 เรื่อง…”"
-                ]
-            },
-            OC: {
-                name: "Overcontrol",
-                tagline: "ชอบบงการ/เถียงเก่ง",
-                icon: "🕹️",
-                desc: "คุณมั่นใจในความคิดและอยากให้งานออกมาดีที่สุด จึงชอบควบคุมหรือยืนยันในสิ่งที่คิด แต่บางครั้งสิ่งนี้ทำให้คนอื่นรู้สึกเหมือนคุณไม่เปิดโอกาสให้เลือก",
-                chips: ["#ชอบบังคับ", "#ไม่ฟังใคร", "#เอาแต่ใจ"],
-                trigger: "มักโผล่เมื่อคุณเชื่อมั่นในความคิดของตัวเองมาก ๆ",
-                why: "<p><strong>Reactance Theory</strong></p><p>ที่อธิบายว่าเมื่อคนรู้สึกถูกบังคับหรือจำกัดอิสรภาพ เขามักจะต่อต้านทันที แม้ว่าสิ่งที่คุณเสนอนั้นจะดีที่สุดก็ตาม</p>",
-                audit: [
-                    "จริงครับ/ค่ะ ผมอาจกดดันไปหน่อย … ต่อไปจะเปิดให้คุณเลือกมากขึ้น",
-                    "ใช่ครับ/ค่ะ ผมเถียงบ่อยเพราะอยากหาคำตอบที่ดีที่สุด … แต่ผมเข้าใจว่ามันทำให้คุณอึดอัด",
-                    "ถูกเลย ผมอาจผลักแรงไป … ครั้งนี้อยากให้คุณตัดสินใจ แล้วผมจะสนับสนุน"
-                ],
-                playbook: [
-                    "ใช้คำว่า “คุณอยาก…” แทน “คุณต้อง…”",
-                    "เสนอทางเลือก 2–3 แบบแทนการบอกตรง ๆ",
-                    "ฟังให้จบก่อนตอบ",
-                    "ชื่นชมไอเดียคนอื่นก่อนเสนอของตัวเอง",
-                    "ถามว่า “คุณคิดยังไง” ก่อนสรุป"
-                ]
-            },
-            CA: {
-                name: "Conflict Avoider",
-                tagline: "เลี่ยงความขัดแย้ง",
-                icon: "🕊️",
-                desc: "คุณรักความสงบ ไม่อยากมีปัญหากับใคร เวลามีเรื่องขัดแย้งมักเลือกเงียบหรือถอย แต่ผลคือปัญหาที่ควรแก้กลับถูกดองจนกลายเป็นเรื่องใหญ่",
-                chips: ["#ไม่พูดตรงๆ", "#หนีปัญหา", "#ไม่เคลียร์"],
-                trigger: "มักโผล่เมื่อสถานการณ์เริ่มตึงเครียด",
-                why: "<p><strong>Conflict Management Styles</strong></p><p>ที่อธิบายว่ารูปแบบการจัดการความขัดแย้งของคุณคือ “การเลี่ยง” ซึ่งมีประโยชน์ในการลดความตึงเครียดระยะสั้น แต่ทำให้ปัญหาระยะยาวยังคงอยู่</p>",
-                audit: [
-                    "จริงครับ/ค่ะ ผมไม่ชอบการทะเลาะ … แต่บางเรื่องควรพูดให้ชัดเจน",
-                    "ใช่ครับ/ค่ะ ผมมักเลี่ยงเพราะอยากรักษาความสัมพันธ์ … แต่ผมจะลองคุยตรง ๆ แบบใจเย็น",
-                    "ถูกเลย ผมอาจเก็บไว้ในใจมากเกินไป … ครั้งนี้ผมอยากอธิบายความรู้สึกให้คุณเข้าใจ"
-                ],
-                playbook: [
-                    "ใช้ประโยคเริ่มด้วย “ผมรู้สึกว่า…”",
-                    "เลือกคุยตอนที่อารมณ์เย็น",
-                    "เขียนประเด็นไว้ก่อนแล้วค่อยพูด",
-                    "เริ่มด้วยเรื่องเล็ก ๆ เช่น “ฉันไม่ชอบเวลา…”",
-                    "ซ้อมพูดกับเพื่อน/ในกระจกก่อนคุยจริง"
-                ]
-            },
-            AS: {
-                name: "Approval-Seeker",
-                tagline: "อยากให้ทุกคนพอใจ",
-                icon: "❤️‍🩹",
-                desc: "คุณอยากทำให้ทุกคนชอบและไม่ผิดหวัง เลยมักจะตอบรับทุกคำขอ แต่ผลคือบางครั้งคุณเหนื่อยเกินไป และคนอื่นไม่รู้ว่าคุณคิดอะไรจริง ๆ",
-                chips: ["#ไม่จริงใจ", "#ไม่กล้าปฏิเสธ", "#ไม่มีความคิดตัวเอง"],
-                trigger: "มักโผล่เมื่อต้องตัดสินใจที่อาจมีคนไม่เห็นด้วย",
-                why: "<p><strong>Need for Approval</strong></p><p>ที่อธิบายว่าคือความต้องการการยอมรับจากคนรอบตัว ซึ่งเป็นเรื่องปกติ แต่หากมากเกินไปจะทำให้คุณสูญเสียความเป็นตัวเองและพลังงานไป</p>",
-                audit: [
-                    "จริงครับ/ค่ะ ผมอยากให้ทุกคนสบายใจ … แต่บางทีก็ลืมดูแลตัวเอง",
-                    "ใช่ครับ/ค่ะ ผมพยายามทำให้ทุกฝ่ายพอใจ … แต่รู้แล้วว่ามันทำไม่ได้เสมอไป",
-                    "ถูกเลย ผมไม่ค่อยกล้าปฏิเสธ … แต่ผมกำลังฝึกบาลานซ์มากขึ้น"
-                ],
-                playbook: [
-                    "ตอบว่า “ขอคิดดูก่อน” แทนการตอบทันที",
-                    "เขียนลิสต์ว่าอะไรบ้างที่ “ไม่อยากทำ”",
-                    "เลือกช่วยเฉพาะเรื่องที่ไม่ทำให้คุณเหนื่อยเกินไป",
-                    "ฝึกปฏิเสธด้วยคำสุภาพ เช่น “ตอนนี้ยังไม่สะดวก”",
-                    "ให้รางวัลตัวเองเมื่อกล้าปฏิเสธครั้งแรก ๆ"
-                ]
-            },
-            PF: {
-                name: "Perfectionist",
-                tagline: "เป๊ะเกินไป/จุกจิก",
-                icon: "🎯",
-                desc: "คุณใส่ใจรายละเอียดและอยากให้งานออกมาดีที่สุด แต่บางครั้งความเป๊ะเกินไปทำให้เสียเวลา ทำให้งานเสร็จช้า และทำให้คนอื่นรู้สึกว่าคุณเข้มงวดเกินไป",
-                chips: ["#จุกจิก", "#ไม่เสร็จซักที", "#ซีเรียสเกิน"],
-                trigger: "มักโผล่เมื่อคุณทำงานที่สำคัญกับตัวเองมาก ๆ",
-                why: "<p><strong>Perfectionism</strong></p><p>ที่อธิบายว่าคือความเชื่อว่าต้องทำให้สมบูรณ์แบบตลอดเวลา ซึ่งอาจนำไปสู่การผัดวันประกันพรุ่ง (เพราะกลัวไม่ดีพอ) และสร้างความเครียดโดยไม่จำเป็น</p>",
-                audit: [
-                    "จริงครับ/ค่ะ ผมชอบเก็บรายละเอียดเยอะ … แต่บางครั้งก็ทำให้ช้าเกินไป",
-                    "ใช่ครับ/ค่ะ ผมอาจดูจุกจิก … เพราะอยากให้งานออกมาดีที่สุด",
-                    "ถูกเลย ผมเน้นความเป๊ะมากไป … ต่อไปจะลองปล่อยงานที่ ‘ดีพอ’ ก่อนแล้วค่อยปรับ"
-                ],
-                playbook: [
-                    "ใช้กฎ 80/20 (ทำ 20% ที่สำคัญให้เสร็จ → ได้ผล 80%)",
-                    "ตั้งเส้นตายที่ตัดจริง ไม่เลื่อน",
-                    "ฉลองงานเล็ก ๆ ที่เสร็จแล้ว",
-                    "ขอความคิดเห็นจากคนอื่นเร็ว ๆ แทนรอให้งานสมบูรณ์",
-                    "ปล่อยงานเวอร์ชันทดลองก่อนสมบูรณ์"
-                ]
-            }
-        };
-
-        const questions = [
-            { text: "เวลาเจอคนใหม่ ๆ คุณมัก…", answers: [ { text: "เงียบ สังเกตก่อน แล้วค่อยพูด", type: "WG", weight: 2 }, { text: "พยายามทำให้บรรยากาศสนุก เข้ากับทุกคนได้", type: "AS", weight: 2 }, { text: "ชอบเป็นคนคุมเกม คุมการคุย", type: "OC", weight: 1 }, { text: "พูดน้อย ๆ แล้วหลบให้คนอื่นคุย", type: "CA", weight: 1 } ] },
-            { text: "ถ้ามีคนทักหาคุณตอนดึก ๆ (เช่น 5 ทุ่ม) คุณจะ…", answers: [ { text: "ตอบกลับทันที ไม่อยากให้ค้างคา", type: "BB", weight: 2 }, { text: "บอกสั้น ๆ ว่าจะตอบพรุ่งนี้เช้า", type: "WG", weight: 1 }, { text: "ตั้งใจเก็บไว้เช้าแล้วค่อยตอบ", type: "PF", weight: 2 }, { text: "ขอโทษหลายครั้ง กลัวเขาไม่สบายใจ", type: "AS", weight: 1 } ] },
-            { text: "เวลามีข้อมูลใหม่ที่สวนทางกับสิ่งที่คิดไว้ คุณจะ…", answers: [ { text: "รีบเปลี่ยนตามข้อมูลใหม่ทันที", type: "CR", weight: 2 }, { text: "สรุปเป็นข้อ ๆ ให้เข้าใจง่ายก่อน", type: "CD", weight: 2 }, { text: "ยืนยันตามแผนเดิมไปก่อน", type: "PF", weight: 1 }, { text: "ถามความเห็นทุกคนก่อนตัดสินใจ", type: "AS", weight: 1 } ] },
-            { text: "ถ้าเพื่อนมาสายเป็นประจำ คุณจะ…", answers: [ { text: "พูดตรง ๆ ไปเลยว่า “ขอมาตรงเวลาหน่อย”", type: "OC", weight: 2 }, { text: "ไม่อยากให้ทะเลาะ เลยเงียบไว้", type: "CA", weight: 2 }, { text: "ส่งข้อความยาว ๆ ระบายความรู้สึก", type: "CD", weight: 1 }, { text: "เปลี่ยนนัดไปเรื่อย ๆ แต่ไม่บอกตรง ๆ", type: "CR", weight: 1 } ] },
-            { text: "ถ้ามีคนให้คุณอธิบายเรื่องยาก ๆ คุณจะ…", answers: [ { text: "จัดเรียง 1–2–3 พร้อมยกตัวอย่างง่าย ๆ", type: "CD", weight: 2 }, { text: "ถามก่อนว่าคนฟังอยากรู้แบบไหน แล้วปรับให้เข้ากับเขา", type: "AS", weight: 2 }, { text: "ตอบสั้น ๆ แค่ประเด็นหลัก", type: "WG", weight: 1 }, { text: "สัญญาว่าจะเขียนโน้ต/ส่งไฟล์ให้ทีหลัง", type: "BB", weight: 1 } ] },
-            { text: "ถ้าทีมยังเลือกแนวทางไม่ได้ คุณจะ…", answers: [ { text: "สรุปให้เอง แล้วกำหนดขั้นตอนทันที", type: "OC", weight: 2 }, { text: "เสนอให้ลอง 2 ทางเลือกสั้น ๆ", type: "CR", weight: 2 }, { text: "พยายามหาทางสายกลางที่ทุกคนยอมรับได้", type: "AS", weight: 1 }, { text: "เลื่อนการตัดสินใจไปก่อนเพื่อไม่ให้ทะเลาะ", type: "CA", weight: 1 } ] },
-            { text: "ถ้าได้รับข้อความตอนเที่ยงคืน คุณจะ…", answers: [ { text: "ตอบกลับทันที", type: "BB", weight: 2 }, { text: "พิมพ์สั้น ๆ ว่า “เดี๋ยวตอบพรุ่งนี้เช้า”", type: "WG", weight: 2 }, { text: "ตั้งเวลาให้ระบบส่งข้อความตอนเช้า", type: "PF", weight: 1 }, { text: "ปล่อยไว้ เช้าแล้วค่อยตอบ", type: "CA", weight: 1 } ] },
-            { text: "ถ้าแชทกลุ่มเริ่มทะเลาะกัน คุณจะ…", answers: [ { text: "สรุปประเด็น แล้ววางกติกาใหม่ให้ชัด", type: "CD", weight: 2 }, { text: "เสนอให้หยุดคุยไว้ก่อน รอใจเย็นแล้วค่อยคุย", type: "CA", weight: 2 }, { text: "ตัดจบด้วยการกำหนดให้ทำตามแนวเดียว", type: "OC", weight: 1 }, { text: "แยกไปคุยนอกรอบจนกว่าจะเคลียร์", type: "BB", weight: 1 } ] },
-            { text: "ถ้ามีคนขอให้ช่วยงานในวันหยุดที่คุณยุ่งอยู่แล้ว คุณจะ…", answers: [ { text: "ตอบตกลง เพราะไม่อยากให้เขาผิดหวัง", type: "AS", weight: 2 }, { text: "ปฏิเสธสุภาพ ๆ พร้อมบอกช่วงเวลาที่คุณทำได้", type: "PF", weight: 2 }, { text: "ตอบสั้น ๆ ว่าไม่สะดวก", type: "WG", weight: 1 }, { text: "บอกให้รอ เดี๋ยวคุณขอดูตารางใหม่", type: "CR", weight: 1 } ] },
-            { text: "ถ้าแผนงานเปลี่ยนกะทันหัน คุณจะ…", answers: [ { text: "ปรับแผนใหม่ทันที", type: "CR", weight: 2 }, { text: "ทักนอกเวลาเพื่อเร่งเคลียร์", type: "BB", weight: 2 }, { text: "ย้ำให้ทีมทำตามแผนเดิมก่อน", type: "OC", weight: 1 }, { text: "รวบรวมข้อดีข้อเสีย แล้วค่อยนัดคุยเป็นระบบ", type: "CD", weight: 1 } ] },
-            { text: "ถ้าใกล้เดดไลน์แต่งานยังไม่เสร็จ คุณจะ…", answers: [ { text: "ปล่อยเวอร์ชัน “ทำได้แค่นี้ก่อน”", type: "PF", weight: 2 }, { text: "เรียกทีมมาคุมทิศทางให้ตรงกันทันที", type: "OC", weight: 2 }, { text: "ทักคุยนอกรอบเพื่อเร่งแก้", type: "BB", weight: 1 }, { text: "เพิ่มรายละเอียดเอกสาร แม้จะช้าลง", type: "CD", weight: 1 } ] },
-            { text: "ถ้าคุณทำผิดพลาดกับใครบางคน คุณจะ…", answers: [ { text: "ขอโทษสั้น ๆ พร้อมบอกวิธีแก้", type: "WG", weight: 2 }, { text: "ขอเวลาสงบก่อน แล้วค่อยนัดเคลียร์", type: "CA", weight: 2 }, { text: "ทำเช็กลิสต์กันผิดซ้ำในอนาคต", type: "PF", weight: 1 }, { text: "พยายามปรับตัวให้คนรอบข้างสบายใจ", type: "AS", weight: 1 } ] }
-        ];
-
-        // --- STATE ---
-        let currentQuestionIndex = 0;
-        let userAnswers = new Array(questions.length).fill(null);
-        let awarenessChartInstance = null;
-        let shuffledQuestions = [];
+        </main>
         
-        // --- DOM ELEMENTS ---
-        const introSection = document.getElementById('intro-section');
-        const quizSection = document.getElementById('quiz-section');
-        const resultsSection = document.getElementById('results-section');
-        const startTestBtn = document.getElementById('startTestBtn');
-        const questionText = document.getElementById('question-text');
-        const answersContainer = document.getElementById('answers-container');
+        <footer class="disclaimer">
+            <div class="disclaimer-title">🧠 เกี่ยวกับการทดสอบเชิงลึกนี้</div>
+            <p>แบบทดสอบนี้พัฒนาจากทฤษฎีจิตวิทยาเชิงลึก&nbsp;Jungian&nbsp;Archetypes ของ&nbsp;Carl&nbsp;Jung,&nbsp;Freud รวมเข้ากับศาสตร์จิตวิทยาสมัยใหม่ เพื่อเปิดเผยรูปแบบจิตใต้สำนึกและสันดานที่ซ่อนลึกในตัวคุณ ซึ่งให้ผลลัพธ์มีความแม่นยำสูง แต่ควรใช้เป็นเครื่องมือสำหรับการทำความเข้าใจตนเองเท่านั้น</p>
+        </footer>
+    </div>
+
+    <div class="credit-footer">By Go On BaBy</div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        try {
+            initializeApp();
+        } catch (error) {
+            console.error('Fatal Error on DOMContentLoaded:', error);
+            document.body.innerHTML = '<h1>เกิดข้อผิดพลาดร้ายแรง โปรดรีเฟรชหน้า</h1>';
+        }
+    });
+
+    const archetypesData = {
+        sage: { icon: "🧙‍♂️", title: "The Sage (นักปราชญ์)", subtitle: "ผู้แสวงหาความจริงและความเข้าใจ", description: "คุณคือผู้ที่ถูกขับเคลื่อนด้วยความปรารถนาที่จะเข้าใจโลกและตัวเองในระดับที่ลึกที่สุด คุณเชื่อว่าความจริงและความรู้คือหนทางสู่อิสรภาพและชีวิตที่ดี คุณมักจะเป็นนักคิด, นักวิเคราะห์, และเป็นที่ปรึกษาที่ยอดเยี่ยม เพราะคุณสามารถมองเห็นภาพรวมและรูปแบบที่คนอื่นมองข้ามไปได้" },
+        innocent: { icon: "🕊️", title: "The Innocent (ผู้ไร้เดียงสา)", subtitle: "ผู้มองโลกในแง่ดีและแสวงหาความสุข", description: "คุณมีความเชื่อมั่นในความดีงามของโลกและผู้คน คุณปรารถนาที่จะอยู่ในโลกที่ปลอดภัย, มีความสุข, และกลมเกลียวเหมือนสวรรค์ คุณมีจิตใจที่บริสุทธิ์, มองโลกในแง่ดี, และมีความสามารถในการสร้างความหวังและกำลังใจให้แก่ผู้อื่น แต่บางครั้งอาจต้องระวังการมองข้ามความเป็นจริงที่โหดร้าย" },
+        explorer: { icon: "🗺️", title: "The Explorer (นักสำรวจ)", subtitle: "ผู้แสวงหาอิสรภาพและการค้นพบตัวเอง", description: "คุณไม่ชอบการถูกผูกมัดและกฎเกณฑ์ที่ตายตัว คุณโหยหาอิสรภาพในการเดินทาง, ค้นพบสิ่งใหม่ๆ, และสัมผัสประสบการณ์ที่หลากหลายเพื่อเข้าใจว่าตัวเองเป็นใคร คุณกล้าหาญ, รักอิสระ, และเป็นตัวของตัวเองสูง แต่บางครั้งอาจรู้สึกไร้จุดหมายหรือไม่สามารถลงหลักปักฐานได้" },
+        hero: { icon: "⚔️", title: "The Hero (วีรบุรุษ)", subtitle: "ผู้พิชิตความท้าทายและปกป้องผู้อื่น", description: "คุณมีความมุ่งมั่นที่จะพิสูจน์คุณค่าของตัวเองผ่านการกระทำที่กล้าหาญ คุณเติบโตจากการเอาชนะอุปสรรค, ต่อสู้เพื่อสิ่งที่ถูกต้อง, และปกป้องผู้ที่อ่อนแอกว่า คุณมีความทรหด, มีวินัย, และเป็นแรงบันดาลใจให้ผู้อื่นลุกขึ้นสู้ แต่ต้องระวังความหยิ่งยโสและการมองหาศัตรูอยู่เสมอ" },
+        rebel: { icon: "💀", title: "The Rebel (ผู้ปฏิวัติ)", subtitle: "ผู้ท้าทายกฎเกณฑ์และสร้างการเปลี่ยนแปลง", description: "คุณคือผู้ที่ไม่ยอมรับสภาพที่เป็นอยู่เมื่อเห็นว่ามันไม่ถูกต้องหรือไม่ยุติธรรม คุณมีพลังในการทำลายล้างกฎเกณฑ์, โครงสร้าง, หรือความเชื่อเก่าๆ ที่ใช้การไม่ได้แล้ว เพื่อเปิดทางให้สิ่งใหม่ๆ ได้เกิดขึ้น คุณกล้าหาญ, คิดนอกกรอบ, และเป็นตัวกระตุ้นการเปลี่ยนแปลงที่สำคัญ" },
+        magician: { icon: "🔮", title: "The Magician (นักมายากล)", subtitle: "ผู้สร้างการเปลี่ยนแปลงและทำให้วิสัยทัศน์เป็นจริง", description: "คุณเชื่อในพลังแห่งการเปลี่ยนแปลงและมีความสามารถในการเปลี่ยนความฝันให้กลายเป็นความจริง คุณเข้าใจกฎที่ซ่อนอยู่เบื้องหลังสิ่งต่างๆ และสามารถนำมันมาใช้เพื่อสร้างผลลัพธ์ที่น่าทึ่ง คุณมีวิสัยทัศน์, สร้างแรงบันดาลใจ, และสามารถหาทางออกที่ทุกฝ่ายได้ประโยชน์ แต่ต้องระวังการใช้อำนาจเพื่อควบคุมหรือบงการ" },
+        everyman: { icon: "👤", title: "The Everyman (คนธรรมดา)", subtitle: "ผู้แสวงหาการยอมรับและการเป็นส่วนหนึ่ง", description: "คุณไม่ต้องการโดดเด่น แต่ต้องการเป็นส่วนหนึ่งของสังคมและได้รับการยอมรับ คุณเชื่อในความเท่าเทียมและมองว่าทุกคนมีคุณค่าเหมือนกัน คุณเป็นคนเข้าถึงง่าย, เป็นมิตร, และเข้าใจความรู้สึกของคนทั่วไปได้ดี ทำให้คุณสามารถเชื่อมต่อกับผู้คนได้อย่างเป็นธรรมชาติ" },
+        lover: { icon: "💕", title: "The Lover (ผู้รัก)", subtitle: "ผู้แสวงหาความใกล้ชิดและความสัมพันธ์อันลึกซึ้ง", description: "หัวใจของคุณถูกขับเคลื่อนด้วยความรัก, ความหลงใหล, และความปรารถนาที่จะมีความสัมพันธ์ที่ใกล้ชิดและมีความหมาย คุณให้คุณค่ากับความงาม, ประสบการณ์ทางอารมณ์, และการเชื่อมต่อกับผู้อื่นอย่างแท้จริง คุณมีเสน่ห์, อ่อนไหว, และมีความสามารถในการทำให้ผู้อื่นรู้สึกพิเศษและเป็นที่รัก" },
+        caregiver: { icon: "🤗", title: "The Caregiver (ผู้ดูแล)", subtitle: "ผู้เปี่ยมด้วยความเมตตาและพร้อมช่วยเหลือ", description: "คุณรู้สึกเติมเต็มเมื่อได้ดูแล, ปกป้อง, และช่วยเหลือผู้อื่น คุณมีความเมตตากรุณา, ความเห็นอกเห็นใจ, และความเสียสละเป็นที่ตั้ง คุณคือที่พึ่งพิงที่อบอุ่นและปลอดภัยสำหรับคนรอบข้าง แต่ต้องระวังการละเลยความต้องการของตัวเองและการช่วยเหลือจนกลายเป็นการควบคุม" },
+        ruler: { icon: "👑", title: "The Ruler (ผู้ปกครอง)", subtitle: "ผู้สร้างระเบียบและนำพาความสำเร็จ", description: "คุณมีความปรารถนาที่จะควบคุม, สร้างระเบียบ, และนำพาความมั่นคงมาสู่ครอบครัว, องค์กร, หรือชุมชนของคุณ คุณมีความรับผิดชอบสูง, เป็นผู้นำโดยธรรมชาติ, และสามารถมองเห็นภาพรวมเพื่อวางกลยุทธ์ที่นำไปสู่ความสำเร็จและความเจริญรุ่งเรือง แต่ต้องระวังการกลายเป็นเผด็จการหรือไม่ยืดหยุ่น" },
+        creator: { icon: "🎨", title: "The Creator (ผู้สร้างสรรค์)", subtitle: "ผู้เปลี่ยนจินตนาการให้กลายเป็นความจริง", description: "คุณถูกขับเคลื่อนด้วยความต้องการที่จะสร้างสรรค์สิ่งใหม่ๆ ที่ไม่เคยมีมาก่อน ไม่ว่าจะเป็นงานศิลปะ, นวัตกรรม, หรือแนวคิดใหม่ๆ คุณมีจินตนาการที่ไร้ขีดจำกัดและมีความปรารถนาที่จะแสดงออกซึ่งความเป็นตัวเองผ่านผลงานของคุณ แต่ต้องระวังการติดอยู่ในความสมบูรณ์แบบจนงานไม่เสร็จ" },
+        jester: { icon: "🎭", title: "The Jester (ตัวตลก)", subtitle: "ผู้ใช้ชีวิตให้เต็มที่และนำความสุขมาให้ผู้คน", description: "คุณเชื่อว่าเรามีชีวิตอยู่แค่ครั้งเดียว ดังนั้นจึงควรใช้ชีวิตให้สนุกและมีความสุขที่สุด คุณมีอารมณ์ขัน, มีไหวพริบ, และมีความสามารถในการมองเห็นด้านที่น่าขันของชีวิต คุณช่วยให้ผู้คนรอบข้างผ่อนคลาย, หัวเราะ, และไม่จริงจังกับชีวิตมากเกินไป" },
+    };
+
+    const questionSets = {
+        normal: [
+            { category: "แรงขับเคลื่อนหลัก", text: "เมื่อตื่นขึ้นมาในวันใหม่ สิ่งแรกที่ผุดขึ้นในใจคือ?", answers: [
+                { text: "วันนี้จะได้เรียนรู้อะไรใหม่ๆ ที่น่าสนใจบ้าง", scores: { sage: 3, explorer: 1 } },
+                { text: "วันนี้มีความท้าทายอะไรให้เราพิสูจน์ตัวเองบ้าง", scores: { hero: 3, ruler: 1 } },
+                { text: "วันนี้เราจะช่วยใครหรือทำให้ใครยิ้มได้บ้าง", scores: { caregiver: 3, everyman: 1 } },
+                { text: "วันนี้จะได้ทำอะไรสนุกๆ หรือสร้างสรรค์อะไรดี", scores: { creator: 2, jester: 2 } }
+            ]},
+            { category: "การตัดสินใจ", text: "เมื่อต้องตัดสินใจเรื่องสำคัญ คุณพึ่งพาอะไรมากที่สุด?", answers: [
+                { text: "ข้อมูล การวิเคราะห์ และหลักเหตุผลที่พิสูจน์ได้", scores: { sage: 3, ruler: 1 } },
+                { text: "สัญชาตญาณ ความรู้สึกจากหัวใจ และประสบการณ์ที่ผ่านมา", scores: { lover: 2, everyman: 2 } },
+                { text: "ความเป็นไปได้ใหม่ๆ และโอกาสที่จะได้ผจญภัย", scores: { explorer: 3, rebel: 1 } },
+                { text: "ผลกระทบต่อคนรอบข้าง และความถูกต้องทางศีลธรรม", scores: { caregiver: 2, hero: 2 } }
+            ]},
+            { category: "สถานการณ์สังคม", text: "ในงานปาร์ตี้ที่ไม่ค่อยรู้จักใคร คุณมักจะเป็นคนแบบไหน?", answers: [
+                { text: "หาคนที่น่าสนใจเพื่อพูดคุยแลกเปลี่ยนความคิดเห็นลึกๆ", scores: { sage: 2, lover: 2 } },
+                { text: "ชวนคนอื่นเล่นเกม หรือสร้างบรรยากาศให้สนุกสนาน", scores: { jester: 3, magician: 1 } },
+                { text: "พยายามทำตัวกลมกลืน พูดคุยกับกลุ่มคนที่ดูเป็นมิตร", scores: { everyman: 3, innocent: 1 } },
+                { text: "คอยสังเกตการณ์ หรือเดินสำรวจรอบๆ เพื่อหาสิ่งน่าสนใจ", scores: { explorer: 2, creator: 1 } }
+            ]},
+            { category: "การแก้ปัญหา", text: "เมื่อเจอปัญหาที่ซับซ้อน วิธีการของคุณคือ?", answers: [
+                { text: "วางโครงสร้าง จัดลำดับความสำคัญ และมอบหมายงาน", scores: { ruler: 3, hero: 1 } },
+                { text: "มองหาทางออกนอกกรอบ หรือมุมมองใหม่ๆ ที่คนอื่นคาดไม่ถึง", scores: { creator: 2, magician: 2 } },
+                { text: "รวบรวมข้อมูลให้มากที่สุดเพื่อทำความเข้าใจแก่นของปัญหา", scores: { sage: 3, explorer: 1 } },
+                { text: "ท้าทายกฎหรือวิธีการเดิมๆ ที่ทำให้เกิดปัญหา", scores: { rebel: 3, hero: 1 } }
+            ]},
+            { category: "ความฝัน", text: "ความสำเร็จในอุดมคติของคุณหน้าตาเป็นอย่างไร?", answers: [
+                { text: "การสร้างอาณาจักรหรือองค์กรที่มั่นคงและทรงอิทธิพล", scores: { ruler: 3, magician: 1 } },
+                { text: "การเป็นที่รักและมีชีวิตที่รายล้อมไปด้วยความสัมพันธ์ที่ดี", scores: { lover: 3, everyman: 2 } },
+                { text: "การสร้างผลงานชิ้นเอกที่เปลี่ยนแปลงโลกและถูกจดจำ", scores: { creator: 3, hero: 2 } },
+                { text: "การมีชีวิตที่เรียบง่าย ปลอดภัย และมีความสุขอย่างแท้จริง", scores: { innocent: 3, caregiver: 1 } }
+            ]},
+            { category: "ความกลัว", text: "คุณกลัวอะไรมากที่สุดในที่ทำงาน?", answers: [
+                { text: "การทำงานที่ซ้ำซากจำเจและไม่มีความท้าทาย", scores: { explorer: 2, hero: 2 } },
+                { text: "การถูกบงการ หรือต้องทำงานในกฎระเบียบที่ไร้เหตุผล", scores: { rebel: 3, ruler: 1 } },
+                { text: "การทำงานผิดพลาดจนทำให้ทีมหรือองค์กรเดือดร้อน", scores: { caregiver: 2, everyman: 2 } },
+                { text: "การถูกมองว่าไม่เก่ง หรือการตัดสินใจโดยไม่มีข้อมูลเพียงพอ", scores: { sage: 3, innocent: 1 } }
+            ]},
+            { category: "การทำงานเป็นทีม", text: "บทบาทที่คุณมักได้รับในทีมคือ?", answers: [
+                { text: "ผู้นำที่วางกลยุทธ์และตัดสินใจ", scores: { ruler: 3, hero: 2 } },
+                { text: "ผู้ประสานงานที่คอยดูแลความสัมพันธ์ในทีม", scores: { caregiver: 2, lover: 2 } },
+                { text: "นักคิดที่คอยหาไอเดียและทางออกใหม่ๆ", scores: { creator: 3, magician: 2 } },
+                { text: "ผู้ปฏิบัติงานที่เชื่อถือได้และทำงานตามที่ได้รับมอบหมาย", scores: { everyman: 3, innocent: 1 } }
+            ]},
+            { category: "ความบันเทิง", text: "วันหยุดสุดสัปดาห์ในอุดมคติของคุณคือ?", answers: [
+                { text: "ไปเที่ยวในที่ที่ไม่เคยไป หรือลองทำกิจกรรมท้าทายใหม่ๆ", scores: { explorer: 3, hero: 1 } },
+                { text: "อ่านหนังสือ ดูสารคดี หรือเข้าคอร์สเรียนที่น่าสนใจ", scores: { sage: 3, creator: 1 } },
+                { text: "ใช้เวลากับเพื่อน, ครอบครัว หรือคนรักอย่างเต็มที่", scores: { lover: 3, caregiver: 2 } },
+                { text: "ไปงานปาร์ตี้, ดูหนังตลก, หรือทำอะไรก็ได้ที่ทำให้หัวเราะ", scores: { jester: 3, everyman: 1 } }
+            ]},
+            { category: "การเผชิญความขัดแย้ง", text: "เมื่อมีความเห็นไม่ตรงกับเพื่อนร่วมงาน คุณจะ?", answers: [
+                { text: "พยายามหลีกเลี่ยงการปะทะและยอมตามเพื่อรักษาสัมพันธ์", scores: { everyman: 2, innocent: 2 } },
+                { text: "นำเสนอข้อมูลและเหตุผลเพื่อโน้มน้าวให้เขาเห็นด้วย", scores: { sage: 3, ruler: 1 } },
+                { text: "ยืนหยัดในจุดยืนของตัวเองและพร้อมที่จะถกเถียง", scores: { hero: 2, rebel: 2 } },
+                { text: "พยายามหาทางออกที่ประนีประนอมและดีกับทั้งสองฝ่าย", scores: { caregiver: 2, magician: 2 } }
+            ]},
+            { category: "ค่านิยมหลัก", text: "คำใดที่อธิบาย 'แก่น' ของคุณได้ดีที่สุด?", answers: [
+                { text: "ความรู้", scores: { sage: 4 } },
+                { text: "ความรัก", scores: { lover: 4 } },
+                { text: "ความกล้า", scores: { hero: 4 } },
+                { text: "อิสรภาพ", scores: { explorer: 4 } }
+            ]},
+            { category: "การเรียนรู้", text: "คุณเรียนรู้ได้ดีที่สุดผ่านวิธีไหน?", answers: [
+                { text: "การลงมือทำและทดลองด้วยตัวเอง", scores: { explorer: 2, creator: 2 } },
+                { text: "การอ่าน, การฟังบรรยาย, และทำความเข้าใจทฤษฎี", scores: { sage: 3, innocent: 1 } },
+                { text: "การถกเถียงและแลกเปลี่ยนความคิดเห็นกับผู้อื่น", scores: { everyman: 2, rebel: 1 } },
+                { text: "การนำความรู้ไปใช้แก้ปัญหาจริงหรือสอนผู้อื่น", scores: { hero: 2, caregiver: 2 } }
+            ]},
+            { category: "การใช้เงิน", text: "ถ้ามีเงินเหลือ คุณมักจะใช้ไปกับอะไร?", answers: [
+                { text: "ประสบการณ์ใหม่ๆ เช่น การเดินทาง, คอนเสิร์ต, หรือร้านอาหารดีๆ", scores: { explorer: 2, lover: 2 } },
+                { text: "ของขวัญสำหรับคนอื่น หรือการช่วยเหลือคนที่ลำบาก", scores: { caregiver: 3, everyman: 1 } },
+                { text: "การลงทุนเพื่อความมั่นคง หรือของที่ใช้งานได้นานๆ", scores: { ruler: 3, innocent: 1 } },
+                { text: "หนังสือ, คอร์สเรียน, หรืออุปกรณ์ที่ช่วยให้สร้างสรรค์ผลงานได้ดีขึ้น", scores: { sage: 2, creator: 2 } }
+            ]},
+            { category: "ความสำเร็จ", text: "คุณจะรู้สึกว่าตัวเอง 'ประสบความสำเร็จ' เมื่อไหร่?", answers: [
+                { text: "เมื่อเอาชนะเป้าหมายที่ท้าทายได้สำเร็จ", scores: { hero: 3, ruler: 1 } },
+                { text: "เมื่อคนรอบข้างมีความสุขเพราะสิ่งที่เราทำ", scores: { caregiver: 3, lover: 2 } },
+                { text: "เมื่อรู้สึกว่าตัวเองได้เรียนรู้และเข้าใจโลกมากขึ้น", scores: { sage: 3, explorer: 1 } },
+                { text: "เมื่อได้ใช้ชีวิตในแบบที่เป็นตัวเองอย่างแท้จริง", scores: { rebel: 2, jester: 2 } }
+            ]},
+            { category: "ปรัชญาชีวิต", text: "ปรัชญาการใช้ชีวิตของคุณใกล้เคียงกับข้อใดมากที่สุด?", answers: [
+                { text: "ชีวิตคือการเดินทางเพื่อค้นหาและเรียนรู้", scores: { explorer: 3, sage: 2 } },
+                { text: "ชีวิตคือการต่อสู้เพื่อสร้างสิ่งที่ดีกว่า", scores: { hero: 3, rebel: 2 } },
+                { text: "ชีวิตคือการเชื่อมต่อและแบ่งปันความรัก", scores: { lover: 3, caregiver: 2 } },
+                { text: "ชีวิตคือการสร้างสรรค์และทิ้งผลงานที่มีความหมายไว้", scores: { creator: 3, magician: 2 } }
+            ]},
+            { category: "แรงบันดาลใจ", text: "อะไรเป็นแรงบันดาลใจให้คุณมากที่สุด?", answers: [
+                { text: "เรื่องราวของคนที่เอาชนะความยากลำบาก", scores: { hero: 3, everyman: 1 } },
+                { text: "ความงามของธรรมชาติและศิลปะ", scores: { creator: 2, innocent: 2 } },
+                { text: "ความลึกลับของจักรวาลและองค์ความรู้ต่างๆ", scores: { sage: 3, magician: 1 } },
+                { text: "รอยยิ้มและเสียงหัวเราะของผู้คน", scores: { caregiver: 2, jester: 2 } }
+            ]},
+            { category: "การรับมือกับความล้มเหลว", text: "เมื่อทำอะไรผิดพลาด คุณมักจะทำอย่างไรเป็นอย่างแรก?", answers: [
+                { text: "วิเคราะห์ว่าผิดพลาดตรงไหนเพื่อไม่ให้เกิดซ้ำ", scores: { sage: 3, ruler: 1 } },
+                { text: "ลุกขึ้นสู้ต่อทันที ความผิดพลาดคือส่วนหนึ่งของชัยชนะ", scores: { hero: 3, explorer: 1 } },
+                { text: "รู้สึกผิดหวังและโทษตัวเองอย่างหนัก", scores: { caregiver: 2, innocent: 2 } },
+                { text: "พยายามมองให้เป็นเรื่องตลก หรือหาอะไรสนุกๆ ทำเพื่อลืมมันไป", scores: { jester: 3, rebel: 1 } }
+            ]},
+            { category: "การให้คำแนะนำ", text: "เมื่อเพื่อนมาขอคำแนะนำ คุณมักจะให้คำแนะนำแบบไหน?", answers: [
+                { text: "คำแนะนำที่อิงจากข้อมูลและตรรกะ", scores: { sage: 3, ruler: 1 } },
+                { text: "คำแนะนำที่เต็มไปด้วยกำลังใจและความเห็นอกเห็นใจ", scores: { caregiver: 3, lover: 2 } },
+                { text: "คำแนะนำให้ลองทำอะไรที่แตกต่างไปจากเดิม", scores: { rebel: 2, explorer: 2 } },
+                { text: "คำแนะนำที่มองการณ์ไกลและสร้างแรงบันดาลใจ", scores: { magician: 3, creator: 1 } }
+            ]},
+            { category: "การเลือกสภาพแวดล้อม", text: "คุณชอบอยู่ในสภาพแวดล้อมแบบไหน?", answers: [
+                { text: "ที่ที่สงบและมีเวลาให้ครุ่นคิด", scores: { sage: 3, innocent: 1 } },
+                { text: "ที่ที่มีชีวิตชีวาและเต็มไปด้วยผู้คน", scores: { everyman: 2, jester: 2 } },
+                { text: "ที่ที่มีระเบียบและโครงสร้างชัดเจน", scores: { ruler: 3, hero: 1 } },
+                { text: "ที่ที่ให้อิสระและไม่มีใครมาตีกรอบ", scores: { explorer: 3, creator: 1 } }
+            ]},
+            { category: "ความสัมพันธ์", text: "อะไรสำคัญที่สุดในความสัมพันธ์สำหรับคุณ?", answers: [
+                { text: "ความซื่อสัตย์และความไว้วางใจ", scores: { innocent: 2, everyman: 2 } },
+                { text: "ความหลงใหลและการเติบโตไปด้วยกัน", scores: { lover: 3, explorer: 1 } },
+                { text: "การสนับสนุนซึ่งกันและกันในทุกเป้าหมาย", scores: { caregiver: 2, hero: 2 } },
+                { text: "การมีพื้นที่ส่วนตัวและเคารพความเป็นอิสระของกันและกัน", scores: { rebel: 2, sage: 1 } }
+            ]},
+            { category: "การมองอนาคต", text: "เมื่อมองไปในอนาคต คุณเห็นภาพอะไรชัดที่สุด?", answers: [
+                { text: "ภาพความสำเร็จและอำนาจในการสร้างสรรค์", scores: { ruler: 3, magician: 2 } },
+                { text: "ภาพของการเดินทางและการค้นพบที่ไม่สิ้นสุด", scores: { explorer: 3, sage: 1 } },
+                { text: "ภาพของครอบครัวและชุมชนที่อบอุ่น", scores: { caregiver: 3, everyman: 2 } },
+                { text: "ภาพของโลกที่ยุติธรรมและดีขึ้นเพราะการต่อสู้ของคุณ", scores: { hero: 3, rebel: 2 } }
+            ]},
+            { category: "การเลือกพันธมิตร", text: "คุณอยากมีคนแบบไหนเป็นเพื่อนร่วมทางชีวิต?", answers: [
+                { text: "คนที่ฉลาดและสามารถแลกเปลี่ยนความรู้กันได้", scores: { sage: 3, ruler: 1 } },
+                { text: "คนที่พร้อมจะผจญภัยและลุยไปด้วยกันทุกที่", scores: { explorer: 3, hero: 2 } },
+                { text: "คนที่อ่อนโยนและคอยดูแลเอาใจใส่ซึ่งกันและกัน", scores: { lover: 3, caregiver: 2 } },
+                { text: "คนที่ตลกและทำให้ทุกวันมีแต่เสียงหัวเราะ", scores: { jester: 3, innocent: 1 } }
+            ]},
+            { category: "ความลับ", text: "คุณมักจะเก็บความลับเรื่องอะไรได้ดีที่สุด?", answers: [
+                { text: "แผนการใหญ่หรือเป้าหมายที่ยังทำไม่สำเร็จ", scores: { ruler: 2, magician: 2 } },
+                { text: "ความรู้สึกที่แท้จริงหรือความอ่อนแอของตัวเอง", scores: { everyman: 2, lover: 2 } },
+                { text: "ความผิดพลาดในอดีตที่ไม่อยากให้ใครรู้", scores: { innocent: 2, hero: 1 } },
+                { text: "ความคิดที่แตกต่างหรือขัดแย้งกับคนส่วนใหญ่", scores: { rebel: 3, sage: 2 } }
+            ]},
+            { category: "มรดก", text: "ถ้าเลือกได้ คุณอยากให้คนจดจำคุณในฐานะอะไร?", answers: [
+                { text: "ผู้ที่นำความรู้และความจริงมาสู่โลก", scores: { sage: 3, magician: 1 } },
+                { text: "ผู้ที่ต่อสู้เพื่อความยุติธรรมและปกป้องผู้อื่น", scores: { hero: 3, caregiver: 2 } },
+                { text: "ผู้ที่สร้างสรรค์ผลงานที่งดงามและเป็นอมตะ", scores: { creator: 3, lover: 1 } },
+                { text: "ผู้ที่สร้างระบบและอาณาจักรที่ยิ่งใหญ่", scores: { ruler: 3, everyman: 1 } }
+            ]},
+            { category: "การจัดการพลังงาน", text: "อะไรที่ 'ชาร์จแบต' ให้คุณได้ดีที่สุด?", answers: [
+                { text: "การได้อยู่คนเดียวเงียบๆ กับความคิดของตัวเอง", scores: { sage: 3, explorer: 1 } },
+                { text: "การได้ช่วยเหลือหรือทำประโยชน์ให้คนอื่น", scores: { caregiver: 3, innocent: 1 } },
+                { text: "การได้ทำงานที่ท้าทายและเห็นผลลัพธ์ที่ชัดเจน", scores: { hero: 2, ruler: 2 } },
+                { text: "การได้ปลดปล่อยจินตนาการหรือทำอะไรสนุกๆ", scores: { creator: 2, jester: 2 } }
+            ]},
+            { category: "การเลือกเส้นทาง", text: "ระหว่างเส้นทางที่ 'ถูกต้อง' กับเส้นทางที่ 'น่าตื่นเต้น' คุณเอนเอียงไปทางไหน?", answers: [
+                { text: "ถูกต้องเสมอ ความมั่นคงและศีลธรรมมาก่อน", scores: { innocent: 3, ruler: 2 } },
+                { text: "น่าตื่นเต้น ชีวิตคือการผจญภัยและการเรียนรู้สิ่งใหม่", scores: { explorer: 3, jester: 1 } },
+                { text: "เลือกเส้นทางที่ถูกต้อง แม้ว่ามันจะน่าตื่นเต้นน้อยกว่าก็ตาม", scores: { everyman: 2, caregiver: 2 } },
+                { text: "ทำไมจะเลือกทั้งสองอย่างไม่ได้? หาทางที่ถูกต้องและน่าตื่นเต้น", scores: { magician: 3, hero: 2 } }
+            ]}
+        ],
+        deep: [
+            { category: "จิตใต้สำนึกลึก", text: "ในความฝันที่ชัดเจนที่สุด คุณมักเห็นตัวเองอยู่ที่ไหน?", answers: [
+                { text: "ห้องสมุดโบราณที่เต็มไปด้วยความลับของจักรวาล", scores: { sage: 4, magician: 2 } },
+                { text: "สนามรบที่กำลังปกป้องอาณาจักรหรือคนที่รัก", scores: { hero: 4, caregiver: 2 } },
+                { text: "ดินแดนที่ไม่เคยมีใครไปถึง กำลังค้นพบสิ่งใหม่ๆ", scores: { explorer: 4, creator: 2 } },
+                { text: "เวทีที่กำลังแสดงความสามารถให้ทุกคนตะลึง", scores: { magician: 3, jester: 2 } }
+            ]},
+            { category: "ความปรารถนาที่ซ่อนลึก", text: "ลึกๆแล้ว คุณปรารถนาที่จะถูกมองว่าเป็นคนแบบไหนมากที่สุด?", answers: [
+                { text: "คนที่ 'รู้' ความจริง ในขณะที่คนอื่นยังหลงทาง", scores: { sage: 4, ruler: 2 } },
+                { text: "คนที่ 'พึ่งพาได้' และเป็นที่รักของทุกคน", scores: { caregiver: 3, lover: 3 } },
+                { text: "คนที่ 'แตกต่าง' และไม่เหมือนใคร", scores: { creator: 3, rebel: 3 } },
+                { text: "คนที่ 'แข็งแกร่ง' และไม่มีวันพ่ายแพ้", scores: { hero: 4, ruler: 2 } }
+            ]},
+            { category: "ความมืดด้านใน", text: "เมื่อคุณรู้สึกโกรธแค้นอย่างที่สุด ความคิดที่ผุดขึ้นมาคือ?", answers: [
+                { text: "อยากจะพิสูจน์ให้พวกเขาเห็นว่าคิดผิดและต้องเสียใจ", scores: { hero: 3, ruler: 2 } },
+                { text: "อยากจะทำลายทุกอย่างที่พวกเขาสร้างหรือยึดถือ", scores: { rebel: 4, magician: 2 } },
+                { text: "อยากจะตัดขาดและทำให้พวกเขาเจ็บปวดจากการสูญเสียคุณไป", scores: { lover: 3, caregiver: 2 } },
+                { text: "อยากจะใช้ความรู้ที่เหนือกว่าทำให้พวกเขาดูโง่เขลา", scores: { sage: 4, ruler: 2 } }
+            ]},
+            { category: "การเชื่อมต่อจิตวิญญาณ", text: "คุณรู้สึก 'เป็นหนึ่งเดียว' กับพลังที่ยิ่งใหญ่กว่าเมื่อไหร่?", answers: [
+                { text: "เมื่อได้ค้นพบ 'ยูเรก้า' หรือเข้าใจสัจธรรมบางอย่าง", scores: { sage: 4, magician: 3 } },
+                { text: "เมื่อได้เสียสละตัวเองเพื่อช่วยเหลือผู้อื่นโดยไม่หวังผล", scores: { caregiver: 4, hero: 3 } },
+                { text: "เมื่อได้สร้างสรรค์ผลงานที่มาจากจิตวิญญาณอย่างแท้จริง", scores: { creator: 4, lover: 2 } },
+                { text: "เมื่อได้อยู่ท่ามกลางธรรมชาติอันกว้างใหญ่และไร้ขีดจำกัด", scores: { explorer: 4, innocent: 2 } }
+            ]},
+            { category: "ความกลัวลึกซึ้ง", text: "ฝันร้ายที่สุดของคุณคือการตื่นมาพบว่า...?", answers: [
+                { text: "คุณอยู่ตัวคนเดียวและไม่มีใครต้องการคุณอีกต่อไป", scores: { lover: 4, everyman: 3 } },
+                { text: "คุณสูญเสียอิสรภาพและต้องใช้ชีวิตตามที่คนอื่นขีดเส้น", scores: { explorer: 4, rebel: 3 } },
+                { text: "คุณไร้ค่า, อ่อนแอ, และไม่สามารถปกป้องอะไรได้เลย", scores: { hero: 4, ruler: 2 } },
+                { text: "ทุกสิ่งที่คุณเคยเชื่อและยึดถือเป็นเรื่องโกหกทั้งสิ้น", scores: { sage: 4, innocent: 3 } }
+            ]},
+            { category: "ความปรารถนาที่ซ่อนลึก", text: "ถ้าลบความทรงจำคนทั้งโลกได้หนึ่งเรื่อง คุณจะลบเรื่องอะไรเกี่ยวกับตัวคุณ?", answers: [
+                { text: "ความผิดพลาดที่น่าอับอายที่สุด", scores: { hero: 3, everyman: 2 } },
+                { text: "คำพูดที่ทำร้ายจิตใจคนที่คุณรัก", scores: { caregiver: 3, lover: 3 } },
+                { text: "ช่วงเวลาที่แสดงความโง่เขลาออกไป", scores: { sage: 4, ruler: 2 } },
+                { text: "การกระทำที่ขี้ขลาดและไม่เป็นตัวของตัวเอง", scores: { rebel: 3, explorer: 2 } }
+            ]},
+            { category: "ความมืดด้านใน", text: "คุณแอบรู้สึกพึงพอใจเล็กน้อยเมื่อไหร่?", answers: [
+                { text: "เมื่อคนที่เคยดูถูกคุณ ทำผิดพลาดอย่างน่าสมเพช", scores: { sage: 3, ruler: 3 } },
+                { text: "เมื่อคู่แข่งที่น่ารำคาญพ่ายแพ้ไป", scores: { hero: 3, rebel: 2 } },
+                { text: "เมื่อคนที่ทิ้งคุณไปกลับมาและต้องการคุณ", scores: { lover: 4, magician: 2 } },
+                { text: "เมื่อกฎเกณฑ์ที่น่าเบื่อถูกทำลายลง", scores: { rebel: 3, jester: 2 } }
+            ]},
+            { category: "การเชื่อมต่อจิตวิญญาณ", text: "สัญลักษณ์ใดที่ดึงดูดใจคุณมากที่สุด?", answers: [
+                { text: "ดวงตาที่มองเห็นทุกสิ่ง (Eye of Providence)", scores: { sage: 4, magician: 2 } },
+                { text: "นกฟีนิกซ์ที่เกิดใหม่จากเถ้าถ่าน", scores: { hero: 3, creator: 3 } },
+                { text: "รากไม้ที่หยั่งลึกและเชื่อมต่อกัน", scores: { caregiver: 3, everyman: 2 } },
+                { text: "วงล้อแห่งโชคชะตา (Wheel of Fortune)", scores: { jester: 3, explorer: 2 } }
+            ]},
+            { category: "ความกลัวลึกซึ้ง", text: "การถูก 'เข้าใจผิด' แบบไหนที่ทรมานคุณที่สุด?", answers: [
+                { text: "ถูกเข้าใจผิดว่า โง่ หรือ ผิวเผิน", scores: { sage: 4, creator: 2 } },
+                { text: "ถูกเข้าใจผิดว่า อ่อนแอ หรือ ขี้ขลาด", scores: { hero: 4, ruler: 2 } },
+                { text: "ถูกเข้าใจผิดว่า ไม่ใส่ใจ หรือ เห็นแก่ตัว", scores: { caregiver: 4, lover: 3 } },
+                { text: "ถูกเข้าใจผิดว่า เหมือนคนอื่น หรือ น่าเบื่อ", scores: { rebel: 3, explorer: 3 } }
+            ]},
+            { category: "จิตใต้สำนึกลึก", text: "เสียงภายในของคุณมักจะกระซิบเตือนเรื่องอะไร?", answers: [
+                { text: "อย่าไว้ใจใครง่ายๆ ทุกคนมีวาระซ่อนเร้น", scores: { sage: 3, rebel: 2 } },
+                { text: "เธอต้องแข็งแกร่งกว่านี้ โลกนี้ไม่มีที่สำหรับผู้อ่อนแอ", scores: { hero: 4, ruler: 2 } },
+                { text: "ถ้าเธอไม่เป็นที่รัก เธอก็จะไม่มีค่าอะไรเลย", scores: { lover: 4, everyman: 2 } },
+                { text: "อย่าปล่อยให้ใครมาทำให้เธอเป็นในสิ่งที่เธอไม่ใช่", scores: { explorer: 3, creator: 3 } }
+            ]},
+            { category: "ความปรารถนาที่ซ่อนลึก", text: "หากมีพลังในการบงการสิ่งหนึ่งได้ คุณจะเลือกบงการอะไร?", answers: [
+                { text: "ความคิดและความเชื่อของผู้คน", scores: { magician: 4, ruler: 3 } },
+                { text: "ความรู้สึกและความรักของคนที่คุณต้องการ", scores: { lover: 4, caregiver: 2 } },
+                { text: "กระแสของเวลาและโชคชะตา", scores: { creator: 3, sage: 3 } },
+                { text: "กฎของสังคมและโครงสร้างอำนาจ", scores: { rebel: 4, hero: 2 } }
+            ]},
+            { category: "ความมืดด้านใน", text: "ลักษณะนิสัยใดในตัวผู้อื่นที่ทำให้คุณ 'รังเกียจ' ที่สุด?", answers: [
+                { text: "ความโง่เขลาที่มาพร้อมกับความมั่นใจ", scores: { sage: 4, rebel: 2 } },
+                { text: "การยอมจำนนต่อโชคชะตาโดยไม่ต่อสู้", scores: { hero: 3, everyman: 2 } },
+                { text: "การเสแสร้งและไม่จริงใจเพื่อผลประโยชน์", scores: { innocent: 3, lover: 2 } },
+                { text: "การชอบควบคุมและบงการชีวิตคนอื่น", scores: { explorer: 3, ruler: 3 } }
+            ]},
+            { category: "การเชื่อมต่อจิตวิญญาณ", text: "คุณเชื่อใน 'พรหมลิขิต' หรือ 'เจตจำนงเสรี'?", answers: [
+                { text: "พรหมลิขิต ทุกอย่างถูกกำหนดไว้แล้ว หน้าที่ของเราคือเข้าใจมัน", scores: { sage: 3, innocent: 2 } },
+                { text: "เจตจำนงเสรี เราคือผู้กำหนดชะตาชีวิตของตัวเอง", scores: { hero: 4, rebel: 3 } },
+                { text: "อาจจะเป็นทั้งสองอย่างผสมกัน เรามีอิสระในขอบเขตที่ถูกกำหนด", scores: { magician: 3, everyman: 2 } },
+                { text: "ไม่สนใจหรอก แค่ใช้ชีวิตในแต่ละวันให้ดีที่สุดก็พอ", scores: { jester: 3, explorer: 2 } }
+            ]},
+            { category: "ความกลัวลึกซึ้ง", text: "ความว่างเปล่าแบบไหนที่น่ากลัวที่สุดสำหรับคุณ?", answers: [
+                { text: "ความว่างเปล่าทางปัญญา (ไม่รู้อะไรเลย)", scores: { sage: 4, creator: 2 } },
+                { text: "ความว่างเปล่าทางอารมณ์ (ไม่รู้สึกอะไรเลย)", scores: { lover: 4, caregiver: 3 } },
+                { text: "ความว่างเปล่าทางสังคม (ไม่มีใครอยู่เคียงข้าง)", scores: { everyman: 3, hero: 2 } },
+                { text: "ความว่างเปล่าทางเป้าหมาย (ไม่มีอะไรให้ทำหรือให้สู้)", scores: { explorer: 3, rebel: 3 } }
+            ]},
+            { category: "จิตใต้สำนึกลึก", text: "ถ้า 'เงา' ของคุณมีตัวตน มันจะมีหน้าตาเป็นอย่างไร?", answers: [
+                { text: "เผด็จการที่เย่อหยิ่งและกระหายอำนาจ", scores: { ruler: 4, hero: 2 } },
+                { text: "นักบงการที่หลอกลวงและใช้คนอื่นเป็นเครื่องมือ", scores: { magician: 4, sage: 2 } },
+                { text: "ผู้ทำลายล้างที่โกรธแค้นและพร้อมจะพังทุกอย่าง", scores: { rebel: 4, hero: 2 } },
+                { text: "ผู้เสพติดความรักที่ขี้หึงและต้องการครอบครอง", scores: { lover: 4, caregiver: 2 } }
+            ]},
+            { category: "ความปรารถนาที่ซ่อนลึก", text: "หากสละตัวตนปัจจุบันได้ คุณอยากเกิดใหม่เป็นอะไร?", answers: [
+                { text: "พลังงานบริสุทธิ์ที่ท่องไปในจักรวาล", scores: { explorer: 4, sage: 3 } },
+                { text: "เทพผู้สร้างที่ปั้นแต่งโลกได้ตามใจนึก", scores: { creator: 4, magician: 3 } },
+                { text: "ผู้พิทักษ์อมตะที่คอยปกป้องผู้บริสุทธิ์", scores: { hero: 4, caregiver: 3 } },
+                { text: "แนวคิดหรือปรัชญาที่จะเปลี่ยนโลกไปตลอดกาล", scores: { sage: 4, ruler: 2 } }
+            ]},
+            { category: "ความมืดด้านใน", text: "คุณเคยแอบหวังให้ใครสักคนล้มเหลวหรือไม่?", answers: [
+                { text: "เคย เมื่อรู้สึกว่าเขาไม่คู่ควรกับความสำเร็จนั้น", scores: { ruler: 3, rebel: 2 } },
+                { text: "เคย เมื่อรู้สึกอิจฉาในสิ่งที่เขามี", scores: { everyman: 3, lover: 2 } },
+                { text: "ไม่เคย ความสำเร็จของคนอื่นไม่เกี่ยวกับเรา", scores: { innocent: 3, sage: 2 } },
+                { text: "ไม่เชิงหวังให้ล้มเหลว แต่ก็ไม่ได้อยากเห็นเขาสำเร็จเกินหน้า", scores: { hero: 3, jester: 1 } }
+            ]},
+            { category: "การเชื่อมต่อจิตวิญญาณ", text: "คุณคิดว่าหลังความตายมีอะไร?", answers: [
+                { text: "การเกิดใหม่ในรูปแบบอื่น วนเวียนไปตามกรรม", scores: { sage: 3, innocent: 2 } },
+                { text: "การไปสู่ดินแดนแห่งพระเจ้าหรือการหลุดพ้น", scores: { caregiver: 3, lover: 2 } },
+                { text: "การสลายกลายเป็นส่วนหนึ่งของพลังงานจักรวาล", scores: { explorer: 3, creator: 2 } },
+                { text: "ความว่างเปล่า การสิ้นสุดที่แท้จริง ไม่มีอะไรต่อ", scores: { rebel: 3, ruler: 2 } }
+            ]},
+            { category: "ความกลัวลึกซึ้ง", text: "การสูญเสียการควบคุมแบบไหนที่น่ากลัวที่สุด?", answers: [
+                { text: "การควบคุมความคิดและเหตุผลของตัวเองไม่ได้", scores: { sage: 4, ruler: 3 } },
+                { text: "การควบคุมอารมณ์ของตัวเองไม่ได้", scores: { lover: 3, hero: 3 } },
+                { text: "การควบคุมร่างกายของตัวเองไม่ได้", scores: { explorer: 3, innocent: 2 } },
+                { text: "การควบคุมชีวิตและโชคชะตาของตัวเองไม่ได้", scores: { rebel: 3, magician: 3 } }
+            ]},
+            { category: "จิตใต้สำนึกลึก", text: "สถานที่แบบไหนที่ทำให้คุณรู้สึก 'เหมือนได้กลับบ้าน' ในระดับจิตวิญญาณ?", answers: [
+                { text: "ป่าลึกหรือภูเขาสูงที่เงียบสงบ", scores: { explorer: 3, sage: 2 } },
+                { text: "ห้องทำงานที่เต็มไปด้วยไอเดียและโปรเจกต์ที่ยังไม่เสร็จ", scores: { creator: 4, ruler: 2 } },
+                { text: "วงสนทนาที่เต็มไปด้วยเสียงหัวเราะและมิตรภาพ", scores: { jester: 3, everyman: 3 } },
+                { text: "อ้อมกอดของคนรักหรือครอบครัว", scores: { lover: 4, caregiver: 3 } }
+            ]},
+            { category: "ความปรารถนาที่ซ่อนลึก", text: "ถ้าคุณสามารถถามคำถามหนึ่งข้อและจะได้รับคำตอบที่ถูกต้อง 100% คุณจะถามว่าอะไร?", answers: [
+                { text: "อะไรคือความหมายที่แท้จริงของการมีอยู่?", scores: { sage: 5, explorer: 2 } },
+                { text: "ฉันจะทำอย่างไรให้โลกนี้ดีขึ้นอย่างแท้จริง?", scores: { hero: 4, caregiver: 3 } },
+                { text: "ใครคือคนที่รักฉันอย่างแท้จริงและไม่มีเงื่อนไข?", scores: { lover: 4, innocent: 2 } },
+                { text: "ศักยภาพสูงสุดที่ซ่อนอยู่ในตัวฉันคืออะไร?", scores: { creator: 4, magician: 3 } }
+            ]},
+            { category: "ความมืดด้านใน", text: "คุณจะทำอย่างไรถ้าคุณสามารถทำผิดได้หนึ่งครั้งโดยไม่มีใครรู้และไม่มีผลกระทบใดๆ?", answers: [
+                { text: "เข้าถึงข้อมูลลับสุดยอดของโลก", scores: { sage: 4, magician: 3 } },
+                { text: "แก้แค้นคนที่เป็นศัตรูอย่างสาสม", scores: { rebel: 4, hero: 3 } },
+                { text: "ทำตามใจปรารถนาทางกายภาพอย่างเต็มที่", scores: { lover: 3, jester: 3 } },
+                { text: "จะไม่ทำอะไร เพราะการกระทำนั้นยังคงอยู่ในใจฉัน", scores: { innocent: 4, caregiver: 2 } }
+            ]},
+            { category: "การเชื่อมต่อจิตวิญญาณ", text: "คุณรู้สึกว่า 'ชีวิต' ที่แท้จริงเริ่มต้นเมื่อไหร่?", answers: [
+                { text: "เมื่อคุณเริ่มตั้งคำถามกับทุกสิ่ง", scores: { sage: 4, rebel: 2 } },
+                { text: "เมื่อคุณค้นพบเป้าหมายที่ยิ่งใหญ่กว่าตัวเอง", scores: { hero: 4, caregiver: 2 } },
+                { text: "เมื่อคุณได้รักใครสักคนอย่างสุดหัวใจ", scores: { lover: 4, innocent: 2 } },
+                { text: "เมื่อคุณหลุดพ้นจากความคาดหวังของคนอื่น", scores: { explorer: 4, creator: 3 } }
+            ]},
+            { category: "ความกลัวลึกซึ้ง", text: "การถูกลืมแบบไหนที่เจ็บปวดที่สุด?", answers: [
+                { text: "ถูกลืมโดยคนที่คุณรักมากที่สุด", scores: { lover: 5, caregiver: 3 } },
+                { text: "ถูกลืมโดยประวัติศาสตร์ ไม่มีใครจดจำผลงานของคุณ", scores: { hero: 4, creator: 3 } },
+                { text: "ถูกลืมโดยสังคม ไม่มีใครเห็นคุณค่าของคุณ", scores: { everyman: 4, ruler: 2 } },
+                { text: "การลืมตัวตนที่แท้จริงของตัวเอง", scores: { sage: 4, explorer: 3 } }
+            ]},
+            { category: "จิตใต้สำนึกลึก", text: "ถ้าจิตวิญญาณของคุณมีสี มันจะเป็นสีอะไร?", answers: [
+                { text: "สีน้ำเงินเข้มเหมือนมหาสมุทรลึก (ความรู้, ความสงบ)", scores: { sage: 4, ruler: 2 } },
+                { text: "สีแดงเพลิงเหมือนไฟ (พลัง, ความกล้า, แพชชั่น)", scores: { hero: 4, rebel: 3 } },
+                { text: "สีเขียวมรกตเหมือนป่า (การเยียวยา, การเติบโต, ชีวิต)", scores: { caregiver: 4, explorer: 2 } },
+                { text: "สีม่วงลึกลับเหมือนจักรวาล (ความคิดสร้างสรรค์, เวทมนตร์)", scores: { creator: 4, magician: 4 } }
+            ]}
+        ],
+        extreme: [
+            { category: "เงาด้านมืดที่ลึกที่สุด", text: "ถ้าไม่มีกฎหมายและศีลธรรม ความปรารถนาต้องห้ามที่คุณจะทำตามคืออะไร?", answers: [
+                { text: "การควบคุมจิตใจและบงการผู้อื่นเพื่อพิสูจน์ความเหนือกว่า", scores: { ruler: 5, magician: 4 } },
+                { text: "การทำลายล้างระบบหรือสัญลักษณ์ที่คุณเกลียดชังให้สิ้นซาก", scores: { rebel: 5, hero: 3 } },
+                { text: "การครอบครองคนที่คุณปรารถนาให้เป็นของคุณแต่เพียงผู้เดียว", scores: { lover: 5, caregiver: 3 } },
+                { text: "การแสวงหาความรู้ต้องห้ามแม้ว่าจะต้องแลกมาด้วยชีวิตผู้อื่น", scores: { sage: 5, explorer: 3 } }
+            ]},
+            { category: "การเผชิญความตาย", text: "หากต้องตายในวันพรุ่งนี้ อะไรคือความเสียใจที่แท้จริงเพียงหนึ่งเดียวของคุณ?", answers: [
+                { text: "ที่ยังไม่ได้พิสูจน์ให้โลกเห็นว่าฉันยิ่งใหญ่แค่ไหน", scores: { hero: 5, ruler: 3 } },
+                { text: "ที่ยังไม่ได้รักหรือดูแลคนที่สำคัญอย่างดีที่สุด", scores: { caregiver: 5, lover: 4 } },
+                { text: "ที่ยังไม่ได้ค้นพบความจริงหรือสร้างผลงานชิ้นเอกให้เสร็จ", scores: { sage: 4, creator: 4 } },
+                { text: "ที่ยังไม่ได้ใช้ชีวิตอย่างอิสระและเป็นตัวเองอย่างแท้จริง", scores: { explorer: 5, rebel: 4 } }
+            ]},
+            { category: "อำนาจสูงสุด", text: "เมื่อคุณมีอำนาจระดับพระเจ้า อะไรคือสิ่งแรกที่คุณจะ 'แก้ไข' เกี่ยวกับมนุษยชาติ?", answers: [
+                { text: "ลบ ความโง่เขลา ออกไป ทำให้ทุกคนมีปัญญาเท่าเทียมกัน", scores: { sage: 5, ruler: 4 } },
+                { text: "ลบ ความเห็นแก่ตัว ออกไป ทำให้ทุกคนรักและดูแลกัน", scores: { caregiver: 5, innocent: 3 } },
+                { text: "ลบ ความอ่อนแอ ออกไป ทำให้ทุกคนแข็งแกร่งและพึ่งพาตัวเองได้", scores: { hero: 5, rebel: 3 } },
+                { text: "ลบ ความเหมือนกัน ออกไป ทำให้ทุกคนมีเอกลักษณ์และสร้างสรรค์", scores: { creator: 5, magician: 4 } }
+            ]},
+            { category: "การล่มสลาย", text: "อะไรคือฟางเส้นสุดท้ายที่จะทำให้คุณ 'แตกสลาย' และปลดปล่อยด้านมืดที่สุดออกมา?", answers: [
+                { text: "การถูกทรยศโดยคนที่ไว้ใจที่สุด", scores: { lover: 5, rebel: 4 } },
+                { text: "การถูกเหยียดหยามว่าไร้ค่าและไม่มีความสามารถต่อหน้าสาธารณะ", scores: { hero: 5, sage: 4 } },
+                { text: "การถูกพรากอิสรภาพไปอย่างถาวร", scores: { explorer: 5, rebel: 4 } },
+                { text: "การเห็นคนที่รักต้องทนทุกข์ทรมานโดยที่ทำอะไรไม่ได้เลย", scores: { caregiver: 5, hero: 4 } }
+            ]},
+            { category: "การยอมแพ้และความหมายสุดท้าย", text: "หากการดำรงอยู่ของคุณต้องแลกกับการลบสิ่งหนึ่งออกจากโลก คุณจะเลือกลบอะไร?", answers: [
+                { text: "ลบความทรงจำทั้งหมดเกี่ยวกับตัวคุณ เพื่อให้คนที่รักไม่ต้องเจ็บปวด", scores: { caregiver: 5, lover: 4 } },
+                { text: "ลบผลงานทั้งหมดของคุณ เพื่อให้โลกเกิดนวัตกรรมใหม่โดยไม่มีอิทธิพลของคุณ", scores: { creator: 4, sage: 3 } },
+                { text: "ลบชื่อเสียงและชัยชนะทั้งหมดของคุณ เพื่อให้ฮีโร่คนใหม่ได้ถือกำเนิด", scores: { hero: 5, everyman: 3 } },
+                { text: "ไม่ลบอะไรทั้งนั้น การดำรงอยู่ของฉันมีความหมายในตัวเอง", scores: { ruler: 4, rebel: 4 } }
+            ]},
+            { category: "เงาด้านมืดที่ลึกที่สุด", text: "ถ้าความแค้นของคุณมีตัวตน มันจะทำอะไรกับศัตรูของคุณ?", answers: [
+                { text: "ทำให้เขาสูญเสียสติปัญญาและกลายเป็นคนโง่เขลา", scores: { sage: 5, magician: 4 } },
+                { text: "ทำลายทุกสิ่งที่เขารักและภาคภูมิใจอย่างช้าๆ", scores: { rebel: 5, ruler: 4 } },
+                { text: "ทำให้เขารู้สึกโดดเดี่ยวและไม่เป็นที่รักไปตลอดกาล", scores: { lover: 5, caregiver: 4 } },
+                { text: "ทำให้เขาต้องตกอยู่ใต้การควบคุมของคุณไปตลอดชีวิต", scores: { ruler: 5, hero: 4 } }
+            ]},
+            { category: "การเผชิญความตาย", text: "บนเตียงใกล้ตาย คุณอยากได้ยินอะไรเป็นประโยคสุดท้าย?", answers: [
+                { text: "โลกนี้ดีขึ้นเพราะมีคุณ", scores: { hero: 5, caregiver: 4 } },
+                { text: "เรารักคุณเสมอและจะรักตลอดไป", scores: { lover: 5, innocent: 3 } },
+                { text: "สิ่งที่คุณค้นพบจะเปลี่ยนโลกไปตลอดกาล", scores: { sage: 5, creator: 4 } },
+                { text: "ในที่สุดคุณก็เป็นอิสระอย่างแท้จริงแล้ว", scores: { explorer: 5, rebel: 3 } }
+            ]},
+            { category: "อำนาจสูงสุด", text: "หากคุณสามารถเขียน 'กฎของจักรวาล' ขึ้นมาใหม่ได้หนึ่งข้อ คุณจะเขียนว่าอะไร?", answers: [
+                { text: "ทุกการกระทำที่เกิดจากความเมตตาจะได้รับรางวัลเสมอ", scores: { caregiver: 5, innocent: 4 } },
+                { text: "ความจริงและความรู้คือสิ่งเดียวที่เป็นอมตะ", scores: { sage: 5, ruler: 3 } },
+                { text: "เจตจำนงที่แข็งแกร่งสามารถเอาชนะโชคชะตาได้เสมอ", scores: { hero: 5, magician: 4 } },
+                { text: "ทุกชีวิตมีสิทธิ์ที่จะสร้างสรรค์และทำลายได้เท่าเทียมกัน", scores: { rebel: 5, creator: 4 } }
+            ]},
+            { category: "การล่มสลาย", text: "ภาพของ 'นรก' ในความคิดของคุณคืออะไร?", answers: [
+                { text: "การถูกบังคับให้ทำในสิ่งที่ไร้ความหมายซ้ำๆ ไปตลอดกาล", scores: { creator: 5, explorer: 4 } },
+                { text: "การต้องอยู่กับความจริงว่าคุณคือต้นเหตุของความทุกข์ทรมานทั้งหมด", scores: { caregiver: 5, hero: 4 } },
+                { text: "การอยู่ในความว่างเปล่าที่ไม่มีความรู้, ไม่มีศิลปะ, ไม่มีรัก", scores: { sage: 5, lover: 4 } },
+                { text: "การต้องมองดูผู้อื่นควบคุมและใช้ชีวิตของคุณแทนคุณ", scores: { ruler: 5, rebel: 4 } }
+            ]},
+            { category: "การยอมแพ้และความหมายสุดท้าย", text: "หากคุณคือ 'ยา' สำหรับโลกใบนี้ คุณคิดว่าคุณเป็นยาประเภทไหน?", answers: [
+                { text: "ยาถอนพิษแห่งความโง่เขลาและความหลงผิด", scores: { sage: 5, magician: 3 } },
+                { text: "ยาชูกำลังสำหรับผู้ที่ท้อแท้และหมดหวัง", scores: { hero: 5, caregiver: 4 } },
+                { text: "ยาแก้ปวดสำหรับหัวใจที่แตกสลายและความเหงา", scores: { lover: 5, everyman: 3 } },
+                { text: "ยาปฏิชีวนะที่ทำลายเชื้อโรคแห่งความเฉื่อยชาและระบบที่ล้าสมัย", scores: { rebel: 5, explorer: 4 } }
+            ]},
+            { category: "เงาด้านมืดที่ลึกที่สุด", text: "คุณอิจฉาคนประเภทไหนมากที่สุด?", answers: [
+                { text: "คนที่มีอิสระและใช้ชีวิตโดยไม่แคร์ใคร", scores: { explorer: 4, rebel: 4 } },
+                { text: "คนที่เป็นที่รักของทุกคนได้อย่างง่ายดาย", scores: { lover: 5, everyman: 3 } },
+                { text: "คนที่มีพรสวรรค์และสร้างสรรค์ผลงานได้อย่างน่าทึ่ง", scores: { creator: 4, magician: 3 } },
+                { text: "คนที่มีอำนาจและได้รับการยอมรับนับถือ", scores: { ruler: 5, hero: 3 } }
+            ]},
+            { category: "การเผชิญความตาย", text: "คำจารึกบนหลุมศพแบบไหนที่คุณ 'ไม่ต้องการ' ที่สุด?", answers: [
+                { text: "เขาเป็นคนดี...แต่ไม่มีใครจดจำ", scores: { hero: 5, creator: 4 } },
+                { text: "เขาใช้ชีวิตอย่างปลอดภัยและไม่เคยเสี่ยง", scores: { explorer: 5, rebel: 4 } },
+                { text: "เขารู้ทุกอย่าง...แต่ไม่เคยทำอะไรเลย", scores: { sage: 5, magician: 4 } },
+                { text: "เขารักทุกคน...จนลืมรักตัวเอง", scores: { lover: 5, caregiver: 4 } }
+            ]},
+            { category: "อำนาจสูงสุด", text: "หากคุณคือผู้พิพากษาในวันสิ้นโลก คุณจะใช้เกณฑ์อะไรตัดสินมนุษย์?", answers: [
+                { text: "เจตนาในการกระทำของพวกเขา", scores: { caregiver: 5, innocent: 4 } },
+                { text: "ผลลัพธ์ของการกระทำของพวกเขา", scores: { ruler: 5, hero: 4 } },
+                { text: "ระดับความเข้าใจในความจริงของพวกเขา", scores: { sage: 5, magician: 3 } },
+                { text: "ระดับการเป็นตัวของตัวเองอย่างแท้จริงของพวกเขา", scores: { creator: 4, rebel: 4 } }
+            ]},
+            { category: "การล่มสลาย", text: "ในสถานการณ์ที่สิ้นหวังที่สุด อะไรคือสิ่งเดียวที่ยังคงยึดเหนี่ยวคุณไว้?", answers: [
+                { text: "ความหวังว่าสักวันความจริงจะปรากฏ", scores: { sage: 4, innocent: 3 } },
+                { text: "หน้าที่ในการปกป้องคนสุดท้ายที่เหลืออยู่", scores: { hero: 5, caregiver: 4 } },
+                { text: "ความทรงจำเกี่ยวกับความรักครั้งสุดท้าย", scores: { lover: 5, everyman: 3 } },
+                { text: "ความดื้อรั้นที่จะไม่ยอมแพ้จนลมหายใจสุดท้าย", scores: { rebel: 5, explorer: 4 } }
+            ]},
+            { category: "การยอมแพ้และความหมายสุดท้าย", text: "ถ้าชีวิตคือหนังสือ คุณอยากให้บทสุดท้ายของตัวเองจบลงอย่างไร?", answers: [
+                { text: "จบลงด้วยการค้นพบที่ยิ่งใหญ่", scores: { sage: 5, explorer: 4 } },
+                { text: "จบลงด้วยชัยชนะในการต่อสู้ครั้งสุดท้าย", scores: { hero: 5, ruler: 4 } },
+                { text: "จบลงท่ามกลางอ้อมกอดของคนที่รัก", scores: { lover: 5, caregiver: 4 } },
+                { text: "จบลงด้วยการสร้างสรรค์สิ่งที่จะอยู่ไปตลอดกาล", scores: { creator: 5, magician: 4 } }
+            ]},
+            { category: "เงาด้านมืดที่ลึกที่สุด", text: "ถ้าคุณต้องเลือก 'บาป' ประจำตัว คุณจะเลือกบาปข้อไหน?", answers: [
+                { text: "ความเย่อหยิ่ง (Pride) ในสติปัญญาของตน", scores: { sage: 5, ruler: 4 } },
+                { text: "ความริษยา (Envy) ในความสุขหรือความสำเร็จของผู้อื่น", scores: { lover: 4, everyman: 3 } },
+                { text: "ความโกรธา (Wrath) ต่อความไม่ยุติธรรม", scores: { hero: 5, rebel: 5 } },
+                { text: "ความเกียจคร้าน (Sloth) ที่จะเปลี่ยนแปลงในสิ่งที่ควร", scores: { innocent: 4, jester: 3 } }
+            ]},
+            { category: "การเผชิญความตาย", text: "คุณกลัว 'กระบวนการ' ของการตาย หรือ 'สภาวะ' หลังความตาย มากกว่ากัน?", answers: [
+                { text: "กระบวนการ เพราะกลัวความเจ็บปวดและการสูญเสียการควบคุม", scores: { ruler: 4, innocent: 3 } },
+                { text: "สภาวะ เพราะกลัวความว่างเปล่าหรือการพิพากษา", scores: { sage: 5, caregiver: 3 } },
+                { text: "ไม่กลัวทั้งสองอย่าง มันคือส่วนหนึ่งของการเดินทาง", scores: { explorer: 5, magician: 4 } },
+                { text: "กลัวการถูกลืมมากกว่าความตายเอง", scores: { hero: 4, creator: 4 } }
+            ]},
+            { category: "อำนาจสูงสุด", text: "หากมีอำนาจในการ 'ลบ' อารมณ์หนึ่งอย่างออกจากมนุษย์ คุณจะลบอะไร?", answers: [
+                { text: "ความกลัว เพื่อให้ทุกคนกล้าหาญ", scores: { hero: 5, ruler: 3 } },
+                { text: "ความเกลียดชัง เพื่อให้ทุกคนรักกัน", scores: { caregiver: 5, lover: 4 } },
+                { text: "ความเศร้า เพื่อให้ทุกคนมีความสุข", scores: { jester: 4, innocent: 4 } },
+                { text: "จะไม่ลบอะไรเลย เพราะทุกอารมณ์จำเป็นต่อการเป็นมนุษย์", scores: { sage: 5, magician: 4 } }
+            ]},
+            { category: "การล่มสลาย", text: "เมื่อคุณสูญเสียทุกอย่าง สิ่งแรกที่คุณจะพยายามสร้างขึ้นมาใหม่คืออะไร?", answers: [
+                { text: "ความรู้และความเข้าใจในสถานการณ์", scores: { sage: 5, ruler: 3 } },
+                { text: "ความสัมพันธ์กับใครสักคนที่ยังเหลืออยู่", scores: { lover: 5, caregiver: 4 } },
+                { text: "ตัวตนและเกียรติของตัวเอง", scores: { hero: 5, rebel: 4 } },
+                { text: "พื้นที่ปลอดภัยเล็กๆ ของตัวเอง", scores: { innocent: 4, everyman: 3 } }
+            ]},
+            { category: "การยอมแพ้และความหมายสุดท้าย", text: "ถ้าพระเจ้าบอกว่า 'ชีวิตเจ้าไร้ความหมาย' คุณจะตอบว่าอะไร?", answers: [
+                { text: "งั้นข้าจะสร้างความหมายขึ้นมาเอง", scores: { creator: 5, hero: 5 } },
+                { text: "ความหมายอยู่ที่การแสวงหา ไม่ใช่การค้นพบ", scores: { explorer: 5, sage: 4 } },
+                { text: "บางทีการไร้ความหมายอาจเป็นอิสรภาพอย่างสูงสุด", scores: { rebel: 5, jester: 4 } },
+                { text: "ความหมายของข้าคือความรักที่ข้ามอบให้ผู้อื่น แม้ท่านจะมองไม่เห็นก็ตาม", scores: { caregiver: 5, lover: 5 } }
+            ]},
+            { category: "เงาด้านมืดที่ลึกที่สุด", text: "อะไรคือความจริงอันโหดร้ายเกี่ยวกับ 'ตัวคุณ' ที่คุณยอมรับได้ยากที่สุด?", answers: [
+                { text: "ลึกๆ แล้วคุณอาจจะไม่ได้ฉลาดกว่าคนอื่น แค่เสแสร้งเก่งกว่า", scores: { sage: 5, everyman: 4 } },
+                { text: "ความกล้าหาญของคุณอาจเป็นแค่การเรียกร้องความสนใจ", scores: { hero: 5, jester: 4 } },
+                { text: "ความรักที่คุณมอบให้อาจเป็นแค่เครื่องมือในการควบคุม", scores: { caregiver: 5, ruler: 4 } },
+                { text: "ความเป็นตัวของตัวเองของคุณอาจเป็นแค่ความกลัวที่จะไม่ได้รับการยอมรับ", scores: { rebel: 5, lover: 4 } }
+            ]},
+            { category: "การเผชิญความตาย", text: "คุณอยากให้ใครอยู่ข้างๆ ในวาระสุดท้ายของชีวิต?", answers: [
+                { text: "คนที่รักคุณที่สุด เพื่อสัมผัสความรักครั้งสุดท้าย", scores: { lover: 5, caregiver: 4 } },
+                { text: "ลูกศิษย์หรือผู้สืบทอด เพื่อส่งต่อปณิธาน", scores: { sage: 4, ruler: 4 } },
+                { text: "คู่แข่งหรือศัตรู เพื่อให้เขาได้เห็นว่าคุณไม่เคยยอมแพ้", scores: { hero: 5, rebel: 4 } },
+                { text: "ไม่มีใครเลย อยากเผชิญหน้ากับมันอย่างลำพังและสงบ", scores: { explorer: 5, magician: 3 } }
+            ]},
+            { category: "อำนาจสูงสุด", text: "หากคุณสามารถมองเห็น 'ความจริง' ที่สมบูรณ์ได้ คุณคิดว่าคุณจะรู้สึกอย่างไร?", answers: [
+                { text: "สงบและหลุดพ้น", scores: { sage: 5, innocent: 4 } },
+                { text: "สิ้นหวังอย่างที่สุด", scores: { everyman: 4, caregiver: 3 } },
+                { text: "มีพลังและอยากจะเปลี่ยนแปลงทุกอย่าง", scores: { magician: 5, hero: 4 } },
+                { text: "เหงา เพราะไม่มีใครเข้าใจสิ่งที่คุณเห็น", scores: { creator: 4, lover: 4 } }
+            ]},
+            { category: "การล่มสลาย", text: "ในภาวะที่คุณสูญเสียความเป็นมนุษย์ไปแล้ว อะไรคือสิ่งสุดท้ายที่บ่งบอกว่านั่นเคยเป็นคุณ?", answers: [
+                { text: "หยดน้ำตาหยดสุดท้ายเพื่อใครสักคน", scores: { lover: 5, caregiver: 5 } },
+                { text: "ความคิดสุดท้ายที่พยายามจะหาเหตุผล", scores: { sage: 5, ruler: 4 } },
+                { text: "กำปั้นสุดท้ายที่ชกออกไปเพื่อต่อสู้", scores: { hero: 5, rebel: 5 } },
+                { text: "ภาพจินตนาการสุดท้ายถึงโลกที่ดีกว่า", scores: { creator: 5, magician: 4 } }
+            ]},
+            { category: "การยอมแพ้และความหมายสุดท้าย", text: "ในท้ายที่สุด อะไรคือสิ่งเดียวที่มีค่าอย่างแท้จริง?", answers: [
+                { text: "ความจริง", scores: { sage: 5, magician: 4 } },
+                { text: "ความรัก", scores: { lover: 5, caregiver: 4 } },
+                { text: "เจตจำนง", scores: { hero: 5, ruler: 4 } },
+                { text: "อิสรภาพ", scores: { explorer: 5, rebel: 5 } }
+            ]}
+        ]
+    };
+
+    let currentLevel = '';
+    let currentQuestionIndex = 0;
+    let currentQuestions = [];
+    let userAnswers = [];
+    let shuffledAnswersForCurrentQuestion = [];
+    let radarChartInstance = null; 
+
+    function initializeApp() {
+        createMysteriousParticles();
+        setupEventListeners();
+    }
+
+    function setupEventListeners() {
+        document.querySelectorAll('.intensity-card').forEach(card => card.addEventListener('click', selectLevel));
+        document.getElementById('startTestBtn').addEventListener('click', startTest);
+        document.getElementById('prevBtn').addEventListener('click', previousQuestion);
+        document.getElementById('nextBtn').addEventListener('click', handleNextButtonClick);
+        document.getElementById('retakeBtn').addEventListener('click', resetTest);
+    }
+    
+    function shuffleArray(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    function selectLevel(event) {
+        document.querySelectorAll('.intensity-card').forEach(c => c.classList.remove('selected'));
+        const selectedCard = event.currentTarget;
+        selectedCard.classList.add('selected');
+        currentLevel = selectedCard.dataset.level;
+        document.getElementById('startTestBtn').disabled = false;
+    }
+
+    function startTest() {
+        if (!currentLevel) return;
+
+        document.getElementById('startSection').style.display = 'none';
+        document.getElementById('quizSection').style.display = 'block';
+        document.getElementById('resultsSection').style.display = 'none';
+
+        currentQuestions = JSON.parse(JSON.stringify(questionSets[currentLevel]));
+        currentQuestionIndex = 0;
+        userAnswers = new Array(currentQuestions.length).fill(null); 
+        
+        displayQuestion();
+    }
+
+    function displayQuestion() {
+        if (currentQuestionIndex < 0 || currentQuestionIndex >= currentQuestions.length) return;
+
+        const question = currentQuestions[currentQuestionIndex];
+        const container = document.getElementById('questionContainer');
+        
+        shuffledAnswersForCurrentQuestion = shuffleArray([...question.answers]);
+
+        container.innerHTML = `
+            <div class="question-card" id="currentQuestionCard">
+                <div class="question-category">${question.category}</div>
+                <div class="question-number">การเจาะลึกที่ ${currentQuestionIndex + 1} / ${currentQuestions.length}</div>
+                <div class="question-text">${question.text}</div>
+                <div class="answers-grid">
+                    ${shuffledAnswersForCurrentQuestion.map((answer) => `
+                        <div class="answer-option" data-text="${answer.text.replace(/"/g, '&quot;')}">
+                            ${answer.text}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+
+        const selectedAnswer = userAnswers[currentQuestionIndex];
+        if (selectedAnswer) {
+            const selectedOptionEl = container.querySelector(`.answer-option[data-text="${selectedAnswer.text.replace(/"/g, '&quot;')}"]`);
+            if (selectedOptionEl) {
+                selectedOptionEl.classList.add('selected');
+            }
+        }
+
+        document.querySelectorAll('.answer-option').forEach(option => option.addEventListener('click', selectAnswer));
+
+        updateProgress();
+        updateNavigation();
+    }
+
+    function selectAnswer(event) {
+        const selectedText = event.currentTarget.dataset.text;
+        userAnswers[currentQuestionIndex] = shuffledAnswersForCurrentQuestion.find(a => a.text === selectedText);
+        document.querySelectorAll('.answer-option').forEach(opt => opt.classList.remove('selected'));
+        event.currentTarget.classList.add('selected');
+        document.getElementById('nextBtn').disabled = false;
+        
+        setTimeout(handleNextButtonClick, 300);
+    }
+
+    function previousQuestion() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            displayQuestion();
+        }
+    }
+    
+    function handleNextButtonClick() {
+        if (userAnswers[currentQuestionIndex] === null) return;
+
+        if (currentQuestionIndex === currentQuestions.length - 1) {
+            showResults();
+        } else {
+            currentQuestionIndex++;
+            const card = document.getElementById('currentQuestionCard');
+            if (card) {
+                card.style.animation = 'questionDarkFadeOut 0.4s ease-out forwards';
+                card.addEventListener('animationend', () => displayQuestion(), { once: true });
+            } else {
+                displayQuestion();
+            }
+        }
+    }
+
+    function updateProgress() {
+        const progressTextEl = document.getElementById('progressText');
+        const progressBarEl = document.getElementById('progressBar');
+        if (progressTextEl) progressTextEl.textContent = `การเจาะลึก ${currentQuestionIndex + 1} จาก ${currentQuestions.length}`;
+        if (progressBarEl) progressBarEl.style.width = `${((currentQuestionIndex + 1) / currentQuestions.length) * 100}%`;
+    }
+
+    function updateNavigation() {
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const progressFill = document.getElementById('progress-bar-fill');
-        const progressText = document.getElementById('progress-text');
-
-        // --- FUNCTIONS ---
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        function startTest() {
-            introSection.classList.add('hidden');
-            resultsSection.classList.add('hidden');
-            quizSection.classList.remove('hidden');
-
-            // --- Shuffle logic ---
-            shuffledQuestions = JSON.parse(JSON.stringify(questions));
-            shuffleArray(shuffledQuestions);
-            shuffledQuestions.forEach(q => shuffleArray(q.answers));
-
-            currentQuestionIndex = 0;
-            userAnswers.fill(null);
-            renderQuestion();
-        }
-
-        function renderQuestion() {
-            const question = shuffledQuestions[currentQuestionIndex];
-            questionText.textContent = question.text;
-            answersContainer.innerHTML = '';
-
-            question.answers.forEach((answer) => {
-                const button = document.createElement('button');
-                button.className = 'answer-option';
-                button.textContent = answer.text;
-                button.dataset.answer = JSON.stringify(answer);
-                
-                const currentSelection = userAnswers[currentQuestionIndex];
-                if (currentSelection && currentSelection.text === answer.text) {
-                    button.classList.add('selected');
-                }
-                answersContainer.appendChild(button);
-            });
-
-            updateNavigation();
-            updateProgressBar();
-        }
-
-        function selectAnswer(e) {
-            if (e.target.classList.contains('answer-option')) {
-                const selectedAnswer = JSON.parse(e.target.dataset.answer);
-                userAnswers[currentQuestionIndex] = selectedAnswer;
-                
-                const options = answersContainer.querySelectorAll('.answer-option');
-                options.forEach(opt => opt.classList.remove('selected'));
-                e.target.classList.add('selected');
-                
-                nextBtn.disabled = false;
-                
-                setTimeout(() => {
-                    if (currentQuestionIndex < questions.length - 1) {
-                        currentQuestionIndex++;
-                        renderQuestion();
-                    } else {
-                        calculateAndShowResults();
-                    }
-                }, 300);
-            }
-        }
-
-        function updateNavigation() {
-            prevBtn.style.visibility = currentQuestionIndex > 0 ? 'visible' : 'hidden';
+        if(prevBtn) prevBtn.disabled = currentQuestionIndex === 0;
+        if(nextBtn) {
             nextBtn.disabled = userAnswers[currentQuestionIndex] === null;
-            if (currentQuestionIndex === questions.length - 1) {
-                nextBtn.textContent = 'ดูผลลัพธ์';
-            } else {
-                nextBtn.textContent = 'ต่อไป';
-            }
+            nextBtn.textContent = (currentQuestionIndex === currentQuestions.length - 1) ? 'ดูผลลัพธ์ 🔮' : 'ลึกต่อไป →';
         }
-        
-        function updateProgressBar() {
-            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-            progressFill.style.width = `${progress}%`;
-            progressText.textContent = `ข้อที่ ${currentQuestionIndex + 1} จาก ${questions.length}`;
-        }
+    }
 
-        function handleNextButtonClick() {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                renderQuestion();
-            } else {
-                calculateAndShowResults();
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                renderQuestion();
-            }
-        }
-        
-        function calculateAndShowResults() {
-            const scores = {};
-            const strongCounts = {};
-            const firstStrongIndex = {};
-
-            Object.keys(archetypes).forEach(key => {
-                scores[key] = 0;
-                strongCounts[key] = 0;
-                firstStrongIndex[key] = Infinity;
-            });
-            
-            userAnswers.forEach((answer, index) => {
-                if(answer !== null) {
-                    scores[answer.type] += answer.weight;
-                    if (answer.weight === 2) {
-                        strongCounts[answer.type]++;
-                        if (index < firstStrongIndex[answer.type]) {
-                            firstStrongIndex[answer.type] = index;
-                        }
+    function calculateScores() {
+        const scores = Object.keys(archetypesData).reduce((acc, key) => ({ ...acc, [key]: 0 }), {});
+        userAnswers.forEach(answerObject => {
+            if (answerObject && answerObject.scores) {
+                for (const archetype in answerObject.scores) {
+                    if (scores.hasOwnProperty(archetype)) {
+                        scores[archetype] += answerObject.scores[archetype];
                     }
                 }
-            });
+            }
+        });
+        return scores;
+    }
 
-            const sortedScores = Object.keys(scores).sort((a, b) => {
-                // 1. Higher score wins
-                if (scores[b] !== scores[a]) {
-                    return scores[b] - scores[a];
-                }
-                // 2. Tie-break: More strong (w=2) answers win
-                if (strongCounts[b] !== strongCounts[a]) {
-                    return strongCounts[b] - strongCounts[a];
-                }
-                // 3. Tie-break: Earlier first strong answer wins
-                return firstStrongIndex[a] - firstStrongIndex[b];
-            });
-            
-            const topArchetypeKey = sortedScores[0];
-            const runnerUpArchetypeKey = sortedScores[1];
-            const topScore = scores[topArchetypeKey];
-            const runnerUpScore = scores[runnerUpArchetypeKey];
-            
-            displayResults(topArchetypeKey, runnerUpArchetypeKey, topScore, runnerUpScore);
-        }
+    function showResults() {
+        document.getElementById('quizSection').style.display = 'none';
+        document.getElementById('resultsSection').style.display = 'block';
+        window.scrollTo(0, 0);
 
-        function createArchetypeCard(key, isTop) {
-            const archetype = archetypes[key];
-            const chipsHTML = archetype.chips.map(chip => `<span class="chip">${chip}</span>`).join('');
-            return `
-                <div class="archetype-card ${isTop ? 'top-archetype' : ''}">
-                    <div class="archetype-title">
-                        <span class="archetype-icon">${archetype.icon}</span>
-                        <h3 class="archetype-name">${archetype.name} – “${archetype.tagline}”</h3>
-                    </div>
-                    <p class="archetype-desc">${archetype.desc}</p>
-                    ${isTop ? `<div class="archetype-chips">${chipsHTML}</div>` : ''}
-                    <p class="trigger-text">${archetype.trigger}</p>
-                </div>
-            `;
-        }
+        const finalScores = calculateScores();
+        const sortedArchetypes = Object.entries(finalScores).sort(([, a], [, b]) => b - a);
+        const resultsContainer = document.getElementById('resultsContainer');
+        resultsContainer.innerHTML = ''; 
 
-        function createAccordion(title, contentItems) {
-            const contentHTML = `<ul>${contentItems.map(item => `<li><div>${item}</div></li>`).join('')}</ul>`;
-            return `
-                <div class="accordion-item">
-                    <button class="accordion-header">${title}</button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">${contentHTML}</div>
-                    </div>
-                </div>
-            `;
-        }
+        const top3 = sortedArchetypes.slice(0, 3);
+        
+        const primaryHTML = createArchetypeCard(top3[0], 0);
+        const secondaryHTML = createArchetypeCard(top3[1], 1);
+        const tertiaryHTML = createArchetypeCard(top3[2], 2);
+        
+        resultsContainer.innerHTML = `
+            <div class="results-grid">
+                <div class="primary-archetype-wrapper">${primaryHTML}</div>
+                <div class="secondary-archetype-wrapper">${secondaryHTML}</div>
+                <div class="tertiary-archetype-wrapper">${tertiaryHTML}</div>
+            </div>
+        `;
 
-        function displayResults(topKey, runnerUpKey, topScore, runnerUpScore) {
-            quizSection.classList.add('hidden');
-            resultsSection.classList.remove('hidden');
-            window.scrollTo(0, 0);
+        renderRadarChart(finalScores);
+    }
 
-            const topArchetypeContainer = document.getElementById('top-archetype-full-container');
-            const runnerUpArchetypeContainer = document.getElementById('runner-up-archetype-full-container');
-
-            // --- Populate Top Archetype Section ---
-            let topHTML = createArchetypeCard(topKey, true);
-            topHTML += createAccordion(`ทำไมถึงถูกมองแบบนี้?`, [archetypes[topKey].why]);
-            topHTML += createAccordion(`จะรับมือยังไง (Accusation Audit)`, archetypes[topKey].audit);
-            topHTML += createAccordion(`คู่มือปรับตัว (Micro-Playbook)`, archetypes[topKey].playbook);
-            topArchetypeContainer.innerHTML = topHTML;
-            
-            // --- Populate Runner-up Archetype Section ---
-            let runnerUpHTML = createArchetypeCard(runnerUpKey, false);
-            runnerUpHTML += createAccordion(`ทำไมถึงถูกมองแบบนี้?`, [archetypes[runnerUpKey].why]);
-            runnerUpHTML += createAccordion(`จะรับมือยังไง (Accusation Audit)`, archetypes[runnerUpKey].audit);
-            runnerUpHTML += createAccordion(`คู่มือปรับตัว (Micro-Playbook)`, archetypes[runnerUpKey].playbook);
-            runnerUpArchetypeContainer.innerHTML = runnerUpHTML;
-            
-            // Setup accordions
-            setupAccordions();
-            
-            // Create Chart
-            const maxScore = 9; // 3*2 + 3*1
-            const topPercentage = Math.round((topScore / maxScore) * 100);
-            const runnerUpPercentage = Math.round((runnerUpScore / maxScore) * 100);
-            renderAwarenessChart(topKey, runnerUpKey, topPercentage, runnerUpPercentage);
-        }
-
-        function setupAccordions() {
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            accordionItems.forEach(item => {
-                const header = item.querySelector('.accordion-header');
-                const content = item.querySelector('.accordion-content');
-                header.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    // This allows opening multiple accordions at once, which is better for this layout
-                    if (isActive) {
-                        item.classList.remove('active');
-                        content.style.maxHeight = null;
-                    } else {
-                        item.classList.add('active');
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                });
-            });
+    function createArchetypeCard([key, score], index) {
+        const ranks = ['สันดานหลัก', 'สันดานรอง', 'สันดานที่ซ่อนอยู่'];
+        const rankDescs = [
+            'ตัวตนที่ขับเคลื่อนคุณเป็นหลัก',
+            'ตัวตนที่มีอิทธิพลสูงและปรากฏบ่อยครั้ง',
+            'พลังแฝงที่จะแสดงออกมาในสถานการณ์ที่บีบคั้น'
+        ];
+        const rankClass = index === 0 ? 'primary' : (index === 1 ? 'secondary' : 'tertiary');
+        const archetype = archetypesData[key];
+        
+        return `
+            <div class="archetype-card ${rankClass}">
+                <div class="archetype-rank">${ranks[index]}</div>
+                <div class="archetype-rank-desc">${rankDescs[index]}</div>
+                <div class="archetype-icon">${archetype.icon}</div>
+                <div class="archetype-title">${archetype.title}</div>
+                <div class="archetype-subtitle">${archetype.subtitle}</div>
+                <div class="archetype-description">${archetype.description}</div>
+            </div>`;
+    }
+    
+    function renderRadarChart(scores) {
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        
+        if (radarChartInstance) {
+            radarChartInstance.destroy();
         }
         
-        function renderAwarenessChart(topKey, runnerUpKey, topPercentage, runnerUpPercentage) {
-            const ctx = document.getElementById('awarenessChart').getContext('2d');
-            if(awarenessChartInstance) {
-                awarenessChartInstance.destroy();
-            }
-            awarenessChartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [archetypes[topKey].name, archetypes[runnerUpKey].name],
-                    datasets: [{
-                        label: 'ดัชนีการตระหนักรู้',
-                        data: [topPercentage, runnerUpPercentage],
-                        backgroundColor: [ 'rgba(212, 175, 55, 0.7)', 'rgba(212, 175, 55, 0.4)'],
-                        borderColor: [ 'rgba(212, 175, 55, 1)', 'rgba(212, 175, 55, 0.7)'],
-                        borderWidth: 1,
-                        borderRadius: 5
-                    }]
+        const labels = Object.keys(scores).map(key => {
+            const titleParts = archetypesData[key].title.match(/\((.*?)\)/);
+            return titleParts ? titleParts[1] : key;
+        });
+        const data = Object.values(scores);
+        const isMobile = window.innerWidth < 768;
+
+        radarChartInstance = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'พลังงาน Archetype',
+                    data: data,
+                    backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                    borderColor: 'rgba(255, 107, 107, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(255, 255, 255, 1)',
+                    pointBorderColor: '#fff',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false }
                 },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: { label: (context) => `${context.raw}%` }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            beginAtZero: true, max: 100,
-                            ticks: { color: 'rgba(234, 234, 234, 0.7)', callback: (value) => value + '%' },
-                            grid: { color: 'rgba(234, 234, 234, 0.1)' }
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                        pointLabels: {
+                            color: 'rgba(255, 255, 255, 0.8)',
+                             font: {
+                                family: "'Kanit', sans-serif",
+                                size: isMobile ? 9 : 12
+                            }
                         },
-                        y: {
-                            ticks: { color: 'rgba(234, 234, 234, 0.9)', font: { size: 14 } },
-                            grid: { display: false }
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.7)',
+                            backdropColor: 'rgba(0, 0, 0, 0.5)',
+                            font: { family: "'Kanit', sans-serif" }
                         }
                     }
                 }
-            });
-        }
-        
-        function resetTest() {
-            resultsSection.classList.add('hidden');
-            quizSection.classList.add('hidden');
-            introSection.classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        function createMysteriousParticles() {
-            const bg = document.getElementById('bgMystery');
-            if (!bg || bg.children.length > 0) return;
-            const count = window.innerWidth < 768 ? 15 : 30;
-            for (let i = 0; i < count; i++) {
-                const p = document.createElement('div');
-                p.className = 'mysterious-particle';
-                p.style.left = `${Math.random() * 100}%`;
-                p.style.top = `${Math.random() * 100}%`;
-                const size = Math.random() * 5 + 2;
-                p.style.width = `${size}px`;
-                p.style.height = `${size}px`;
-                p.style.animationDelay = `${Math.random() * 15}s`;
-                p.style.animationDuration = `${Math.random() * 10 + 15}s`;
-                bg.appendChild(p);
             }
-        }
+        });
+    }
+
+    function resetTest() {
+        document.getElementById('startSection').style.display = 'block';
+        document.getElementById('quizSection').style.display = 'none';
+        document.getElementById('resultsSection').style.display = 'none';
+
+        document.querySelectorAll('.intensity-card').forEach(c => c.classList.remove('selected'));
+        document.getElementById('startTestBtn').disabled = true;
         
-        // --- INITIALIZE APP ---
-        function initializeApp() {
-            createMysteriousParticles();
-            startTestBtn.addEventListener('click', startTest);
-            prevBtn.addEventListener('click', previousQuestion);
-            nextBtn.addEventListener('click', handleNextButtonClick);
-            answersContainer.addEventListener('click', selectAnswer);
-            document.querySelector('#retakeBtn button').addEventListener('click', resetTest);
+        if (radarChartInstance) {
+            radarChartInstance.destroy();
+            radarChartInstance = null;
         }
-
-        initializeApp();
-
-    });
+        window.scrollTo(0, 0);
+    }
+    
+    function createMysteriousParticles() {
+        const bgMystery = document.getElementById('bgMystery');
+        if (!bgMystery || bgMystery.children.length > 0) return;
+        const particleCount = window.innerWidth < 768 ? 20 : 40;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'mystery-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            const size = Math.random() * 6 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.animationDelay = Math.random() * 12 + 's';
+            particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            bgMystery.appendChild(particle);
+        }
+    }
     </script>
 </body>
 </html>
-
-
-
 
 
